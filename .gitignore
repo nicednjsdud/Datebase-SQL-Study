@@ -1,0 +1,19 @@
+
+# Created by https://www.toptal.com/developers/gitignore/api/dbeaver,oracleforms
+# Edit at https://www.toptal.com/developers/gitignore?templates=dbeaver,oracleforms
+
+### DBeaver ###
+# ide config file
+.dbeaver-data-sources*.xml
+
+### OracleForms ###
+# Compiled Form Modules
+*.fmx
+
+# Compiled Menu Modules
+*.mmx
+
+# Compiled Pre-Linked Libraries
+*.plx
+
+# End of https://www.toptal.com/developers/gitignore/api/dbeaver,oracleforms
