@@ -71,7 +71,22 @@ FROM TB_EMP A
 GROUP BY A.DEPT_CD 
 ORDER BY A.DEPT_CD ;
 
+-- 자격증명을 기준으로 정렬하시오.
 
+SELECT a.CERTI_CD ,a.CERTI_NM ,a.ISSUE_INSTI_NM 
+FROM TB_CERTI a
+ORDER BY a.CERTI_NM DESC 
+;
+
+SELECT a.CERTI_CD ,a.CERTI_NM AS name ,a.ISSUE_INSTI_NM 
+FROM TB_CERTI a
+ORDER BY name 
+;
+
+-- select 절에 존재하지 않는 컬럼으로 정렬 가능
+SELECT a.CERTI_CD , a.ISSUE_INSTI_NM 
+FROM tb_certi a
+ORDER BY a.CERTI_NM DESC ;
 
 
 
