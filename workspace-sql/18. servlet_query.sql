@@ -20,6 +20,7 @@ CREATE TABLE T_MEMBER (
 INSERT INTO T_MEMBER VALUES ('LEE','0824','이순신','LEE@gamil.com',sysdate);
 INSERT INTO T_MEMBER VALUES ('HONG','0824','홍길동','HONG@gamil.com',sysdate);
 INSERT INTO T_MEMBER VALUES ('SHIN','0824','신사임당','SHIN@gamil.com',sysdate);
+INSERT INTO T_member (ID,PWD,NAME,EMAIL) VALUES ('TEST','0824','테스트','TEST@gmail.com');
 COMMIT;
 
 SELECT * FROM T_MEMBER;
