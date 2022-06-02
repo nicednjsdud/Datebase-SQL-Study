@@ -50,6 +50,96 @@ FROM TB_CERTI C
 WHERE C.ISSUE_INSTI_NM = '한국데이터베이스진흥원';
 
 
+-- 다중 쿼리
+-- 한 부서에 2명 이상 있는 부서중에서 각 부서의 생일기준 나이가 제일 많은 사원을 출력하시오.
+-- emp_no, emp_name, dept_cd, dept_nm, birth_de
+
+SELECT A.EMP_NO , A.EMP_NM , B.DEPT_CD ,B.DEPT_NM ,A.BIRTH_DE 
+FROM TB_EMP A , TB_DEPT B 
+WHERE (A.DEPT_CD,A.BIRTH_DE) IN 
+(
+SELECT K.DEPT_CD , MIN(K.BIRTH_DE) AS MIN_BIRTH_DE
+FROM EZEN.TB_EMP K
+GROUP BY K.DEPT_CD 
+HAVING COUNT(*) > 1
+)
+AND A.DEPT_CD =B.DEPT_CD 
+ORDER BY A.EMP_NO 
+;
+-- 서브쿼리
+SELECT K.DEPT_CD , MIN(K.BIRTH_DE) AS MIN_BIRTH_DE
+FROM EZEN.TB_EMP K
+GROUP BY K.DEPT_CD 
+HAVING COUNT(*) > 1;
+
+-- 직원들 중 주소가 강남인 직원이 소속된 부서코드와 부서명을 출력하시오.
+-- EXISTS문 서브쿼리
+
+SELECT A.DEPT_CD , A.DEPT_NM 
+FROM TB_DEPT A 
+WHERE EXISTS 
+(
+SELECT  1
+FROM TB_EMP K
+WHERE K.DEPT_CD = A.DEPT_CD 
+AND K.ADDR LIKE '%강남%'
+)
+;
+
+-- 한국데이터베이스진흥원에서 발급한 자격증을 가지고 있는 사람의
+-- 사원번호, 사원명, 자격증 코드, 자격증명을 출력하시오.
+-- 스칼라 서브쿼리 
+SELECT A.EMP_NO , ( SELECT M.EMP_NM  FROM TB_EMP M WHERE M.EMP_NO=A.EMP_NO) AS EMP_NM 
+						, A.CERTI_CD , ( SELECT L.CERTI_NM  FROM TB_CERTI L WHERE A.CERTI_CD =L.CERTI_CD) 
+FROM TB_EMP_CERTI A
+WHERE A.CERTI_CD  IN 
+(
+SELECT K.CERTI_CD 
+FROM TB_CERTI K
+WHERE K.ISSUE_INSTI_NM = '한국데이터베이스진흥원'
+)
+ORDER BY EMP_NO  ;
+;
+SELECT K.CERTI_CD 
+FROM TB_CERTI K
+WHERE K.ISSUE_INSTI_NM = '한국데이터베이스진흥원'
+;
+
+-- 한국데이터베이스진흥원에서 발급한 자격증을 가지고 있는 사원의
+-- 사원번호, 사원명, 자격증 코드, 자격증명을 출력하시오.
+-- 인라인 뷰 사용
+
+
+FROM(
+	SELECT K.CERTI_CD 
+	FROM TB_CERTI K
+	WHERE K.ISSUE_INSTI_NM = '한국데이터베이스 진흥원'
+) A
+,TB_EMP_CERTI B
+WHERE A.CERTI
+
+CREATE VIEW V_TB_SAL_HIS_MAX_BY_EMP_NO AS 
+SELECT A.EMP_NO , A.EMP_NM , B.DEPT_CD ,B.DEPT_NM ,MAX(C.PAY_AMT) AS MAX_PAY_AMT 
+FROM TB_EMP A, TB_DEPT B, TB_SAL_HIS C
+WHERE A.EMP_NO = C.EMP_NO  AND A.DEPT_CD = B.DEPT_CD 
+GROUP BY A.EMP_NO , A.EMP_NM , B.DEPT_CD , B.DEPT_NM 
+;
+SELECT *
+FROM V_TB_SAL_HIS_MAX_BY_EMP_NO 
+;
+
+DROP VIEW V_TB_SAL_HIS_MAX_BY_EMP_NO ;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
