@@ -26,6 +26,11 @@ COMMIT;
 SELECT * FROM T_MEMBER;
 DELETE FROM T_MEMBER WHERE ID ='ezen';
 
+SELECT DECODE(COUNT(*),1,'TRUE','FALSE') AS RESULT
+FROM T_MEMBER 
+WHERE ID='LEE1' AND PWD = '0824'
+;
+
 
 -- 테이블 및 시퀀스 생성
 
@@ -41,3 +46,56 @@ CREATE TABLE MEMBER (
 
 INSERT INTO "MEMBER" (ID,PASS,NAME) VALUES ('EZEN','0824','이젠');
 SELECT * FROM MEMBER WHERE ID = 'EZEN' AND PASS ='0824';
+
+DROP TABLE board CASCADE CONSTRAINTS;
+CREATE TABLE board (
+		num NUMBER PRIMARY KEY ,
+		title varchar2(200) NOT NULL,
+		content varchar2(2000) NOT NULL,
+		id varchar2(10) NOT NULL,
+		postdate DATE DEFAULT sysdate NOT NULL,
+		visitcount number(6)
+);
+-- 외래키로 테이블 사이의 관계 설정
+-- board 테이블의 id 컬럼이 member 테이블의 id컬럼을 참조하도록 해주는 외래키 생성
+ALTER TABLE board ADD CONSTRAINT board_member_fk FOREIGN KEY (id) REFERENCES member(id);
+COMMIT;
+
+-- 일련번호형 시퀀스(Sequence) 객체 생성
+-- : 순차적으로 증가하는 순번을 반환하는 데이터베이스 객체임.
+DROP SEQUENCE seq_board_num;
+CREATE SEQUENCE seq_board_num
+	INCREMENT BY 1				-- 1씩 증가
+	START WITH 1				-- 시작값 1
+	MINVALUE 1					-- 최소값 1
+	nomaxvalue					-- 최대값은 무한대
+	nocycle						-- 순환하지 않음
+	nocache						-- 캐시 안함
+	;
+
+INSERT INTO board VALUES (seq_board_num.nextval, '오늘은 6월 2째주','월요일같은 화요일입니다.'
+		,'EZEN',sysdate,0);
+INSERT INTO board VALUES (seq_board_num.nextval, '2022년 절반이 감','어느덧 올해도 절반이 지나갑니다.'
+		,'EZEN',sysdate,0);
+COMMIT;
+
+SELECT * FROM BOARD ORDER BY NUM DESC;
+
+SELECT * FROM board WHERE title LIKE '%오늘%';
+
+SELECT * FROM board WHERE CONTENT LIKE '%월%';
+
+SELECT count(*) FROM board WHERE title LIKE '%오늘%';
+
+SELECT count(*) FROM board WHERE CONTENT LIKE '%월%';
+
+
+
+
+
+
+
+
+
+
+
