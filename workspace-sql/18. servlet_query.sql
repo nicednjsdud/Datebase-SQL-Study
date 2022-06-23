@@ -114,6 +114,96 @@ COMMIT;
 SELECT DECODE(COUNT(*),1,'true','false') AS result FROM T_MEMBER WHERE id= 'LEE';
 
 
+DROP TABLE mvcboard	CASCADE CONSTRAINTS;
+CREATE TABLE mvcboard (
+	idx	NUMBER PRIMARY KEY,
+	name varchar2(50) NOT NULL,
+	title varchar2(200) NOT NULL,
+	content varchar2(2000) NOT NULL,
+	postdate DATE DEFAULT sysdate NOT NULL,
+	ofile varchar2(200),
+	sfile varchar2(30),
+	download NUMBER DEFAULT 0 NOT NULL,
+	pass varchar2(50) NOT NULL,
+	visitcount NUMBER DEFAULT 0 NOT null
+);
+
+INSERT INTO EZEN.MVCBOARD
+(IDX, NAME, TITLE, CONTENT, PASS)
+VALUES(seq_board_num.nextval, 'bob', 'bob의 개발일기', '자바와 스프링을 공부하고있습니다.', '0824' );
+INSERT INTO EZEN.MVCBOARD
+(IDX, NAME, TITLE, CONTENT, PASS)
+VALUES(seq_board_num.nextval, 'bob', 'bob의 개발일기2', '자바와 스프링을 공부하고있습니다.2', '0824' );
+INSERT INTO EZEN.MVCBOARD
+(IDX, NAME, TITLE, CONTENT, PASS)
+VALUES(seq_board_num.nextval, 'bob', 'bob의 개발일기3', '자바와 스프링을 공부하고있습니다.3', '0824' );
+INSERT INTO EZEN.MVCBOARD
+(IDX, NAME, TITLE, CONTENT, PASS)
+VALUES(seq_board_num.nextval, 'bob', 'bob의 개발일기4', '자바와 스프링을 공부하고있습니다.4', '0824' );
+INSERT INTO EZEN.MVCBOARD
+(IDX, NAME, TITLE, CONTENT, PASS)
+VALUES(seq_board_num.nextval, 'bob', 'bob의 개발일기5', '자바와 스프링을 공부하고있습니다.5', '0824' );
+COMMIT;
+INSERT INTO EZEN.MVCBOARD
+(IDX, NAME, TITLE, CONTENT, PASS)
+VALUES(seq_board_num.nextval, 'bob', 'bob의 개발일기6', '자바와 스프링을 공부하고있습니다.6', '0824' );
+INSERT INTO EZEN.MVCBOARD
+(IDX, NAME, TITLE, CONTENT, PASS)
+VALUES(seq_board_num.nextval, 'bob', 'bob의 개발일기7', '자바와 스프링을 공부하고있습니다.7', '0824' );
+INSERT INTO EZEN.MVCBOARD
+(IDX, NAME, TITLE, CONTENT, PASS)
+VALUES(seq_board_num.nextval, 'bob', 'bob의 개발일기8', '자바와 스프링을 공부하고있습니다.8', '0824' );
+INSERT INTO EZEN.MVCBOARD
+(IDX, NAME, TITLE, CONTENT, PASS)
+VALUES(seq_board_num.nextval, 'bob', 'bob의 개발일기9', '자바와 스프링을 공부하고있습니다.9', '0824' );
+INSERT INTO EZEN.MVCBOARD
+(IDX, NAME, TITLE, CONTENT, PASS)
+VALUES(seq_board_num.nextval, 'bob', 'bob의 개발일기10', '자바와 스프링을 공부하고있습니다.10', '0824' );
+
+SELECT id,pass,rownum FROM "MEMBER";
+
+SELECT * FROM MVCBOARD ORDER BY IDX DESC ;
+
+-- 페이징 처리 쿼리문
+
+SELECT TB.*, ROWNUM rnum
+FROM (SELECT * FROM MVCBOARD ORDER BY IDX DESC ) TB
+;
+
+SELECT *
+FROM (
+	SELECT TB.*, ROWNUM rnum
+	FROM (SELECT * FROM MVCBOARD ORDER BY IDX DESC ) TB
+)
+WHERE rnum BETWEEN 1 AND 10;
+
+SELECT count(*) FROM mvcboard WHERE 
+
+DROP TABLE myfile CASCADE CONSTRAINTS;
+CREATE TABLE myfile(
+	idx NUMBER PRIMARY KEY NOT null,
+	name varchar2(50) NOT NULL,
+	title varchar2(200) NOT NULL,
+	cate varchar2(30),
+	ofile varchar2(100) NOT NULL,
+	sfile varchar2(30) NOT NULL,
+	postdate DATE DEFAULT sysdate NOT null
+);
+
+
+INSERT INTO EZEN.MYFILE
+(IDX, NAME, TITLE, CATE, OFILE, SFILE)
+VALUES(seq_board_num.nextval, '정원영', 'test', '사진', 'test.jpg', '20220621.jpg');
+
+
+SELECT * FROM MVCBOARD WHERE IDX = '38';
+
+UPDATE MVCBOARD SET VISITCOUNT = VISITCOUNT +1 WHERE idx= '35';
+
+UPDATE MVCBOARD SET DOWNLOAD = DOWNLOAD  +1 WHERE idx= '38';
+
+
+
 
 
 
