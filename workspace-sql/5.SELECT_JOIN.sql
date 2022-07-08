@@ -1,69 +1,69 @@
 
--- ÁÖ¹® Å×ÀÌºí¿¡¼­ ÁÖ¹® Á¦Ç°º° ¼ö·®ÀÇ ÇÕ°è¸¦ °Ë»öÇÏ½Ã¿À.
--- µ¿ÀÏ Á¦Ç°À» ÁÖ¹®ÇÑ ÅõÇ®À» ¸ð¾Æ ±×·ìÀ¸·Î ¸¸µé°í, ±×·ìº°·Î ¼ö·®ÀÇ ÇÕ°è¸¦ °è»ê
-SELECT ORDERNAME, SUM(COUNT) AS ÃÑÁÖ¹®¼ö·®
+-- ì£¼ë¬¸ í…Œì´ë¸”ì—ì„œ ì£¼ë¬¸ ì œí’ˆë³„ ìˆ˜ëŸ‰ì˜ í•©ê³„ë¥¼ ê²€ìƒ‰í•˜ì‹œì˜¤.
+-- ë™ì¼ ì œí’ˆì„ ì£¼ë¬¸í•œ íˆ¬í’€ì„ ëª¨ì•„ ê·¸ë£¹ìœ¼ë¡œ ë§Œë“¤ê³ , ê·¸ë£¹ë³„ë¡œ ìˆ˜ëŸ‰ì˜ í•©ê³„ë¥¼ ê³„ì‚°
+SELECT ORDERNAME, SUM(COUNT) AS ì´ì£¼ë¬¸ìˆ˜ëŸ‰
 FROM ORDERSERVICE
 GROUP BY ORDERNAME;
 
 /*
- * Á¦Ç° Å×ÀÌºí¿¡¼­ Á¦Á¶¾÷Ã¼º°·Î Á¦Á¶ÇÑ Á¦Ç°ÀÇ °³¼ö¿Í Á¦Ç° Áß °¡Àå ºñ½Ñ ´Ü°¡¸¦ °Ë»öÇÏµÇ,
- * Á¦Ç°ÀÇ °³¼ö´Â Á¦Ç°¼ö¶ó´Â ÀÌ¸§À¸·Î Ãâ·ÂÇÏ°í, °¡Àå ºñ½Ñ ´Ü°¡´Â ÃÖ°í°¡¶ó´Â ÀÌ¸§À¸·Î Ãâ·ÂÇÏ½Ã¿À.
+ * ì œí’ˆ í…Œì´ë¸”ì—ì„œ ì œì¡°ì—…ì²´ë³„ë¡œ ì œì¡°í•œ ì œí’ˆì˜ ê°œìˆ˜ì™€ ì œí’ˆ ì¤‘ ê°€ìž¥ ë¹„ì‹¼ ë‹¨ê°€ë¥¼ ê²€ìƒ‰í•˜ë˜,
+ * ì œí’ˆì˜ ê°œìˆ˜ëŠ” ì œí’ˆìˆ˜ë¼ëŠ” ì´ë¦„ìœ¼ë¡œ ì¶œë ¥í•˜ê³ , ê°€ìž¥ ë¹„ì‹¼ ë‹¨ê°€ëŠ” ìµœê³ ê°€ë¼ëŠ” ì´ë¦„ìœ¼ë¡œ ì¶œë ¥í•˜ì‹œì˜¤.
  */
 
-SELECT FACTORY, COUNT(*) AS Á¦Ç°¼ö , MAX(PRICE) AS ÃÖ°í°¡
+SELECT FACTORY, COUNT(*) AS ì œí’ˆìˆ˜ , MAX(PRICE) AS ìµœê³ ê°€
 FROM ITEM 
 GROUP BY FACTORY;
 
 /*
-	Á¦Ç° Å×ÀÌºí¿¡¼­ Á¦Ç°À» 3°³ÀÌ»ó Á¦Á¶ÇÑ Á¦Á¶¾÷Ã¼º°·Î Á¦Ç°ÀÇ °³¼ö¿Í,
-	Á¦Ç° Áß °¡Àå ºñ½Ñ ´Ü°¡¸¦ °Ë»öÇÏ½Ã¿À.
+	ì œí’ˆ í…Œì´ë¸”ì—ì„œ ì œí’ˆì„ 3ê°œì´ìƒ ì œì¡°í•œ ì œì¡°ì—…ì²´ë³„ë¡œ ì œí’ˆì˜ ê°œìˆ˜ì™€,
+	ì œí’ˆ ì¤‘ ê°€ìž¥ ë¹„ì‹¼ ë‹¨ê°€ë¥¼ ê²€ìƒ‰í•˜ì‹œì˜¤.
 */
 
-SELECT Á¦Á¶¾÷Ã¼, count(*) AS Á¦Ç°¼ö, max(´Ü°¡) AS ÃÖ°í°¡
-FROM Á¦Ç°
-GROUP BY Á¦Á¶¾÷Ã¼ HAVING count(*) >= 3;
+SELECT ì œì¡°ì—…ì²´, count(*) AS ì œí’ˆìˆ˜, max(ë‹¨ê°€) AS ìµœê³ ê°€
+FROM ì œí’ˆ
+GROUP BY ì œì¡°ì—…ì²´ HAVING count(*) >= 3;
 
 
 /*
- *  °í°´ Å×ÀÌºí¿¡¼­ Àû¸³±Ý Æò±ÕÀÌ 1,000¿ø ÀÌ»óÀÎ µî±Þ¿¡ ´ëÇØ µî±Þº° °í°´¼ö¿Í Àû¸³±Ý Æò±ÕÀ» °Ë»öÇÏ½Ã¿À.
+ *  ê³ ê° í…Œì´ë¸”ì—ì„œ ì ë¦½ê¸ˆ í‰ê· ì´ 1,000ì› ì´ìƒì¸ ë“±ê¸‰ì— ëŒ€í•´ ë“±ê¸‰ë³„ ê³ ê°ìˆ˜ì™€ ì ë¦½ê¸ˆ í‰ê· ì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
  */
 
-SELECT µî±Þ, count(*) AS °í°´¼ö , avg(Àû¸³±Ý) AS "Àû¸³±Ý Æò±Õ"
-FROM °í°´
-GROUP BY µî±Þ HAVING avg(Àû¸³±Ý) >=1000;
+SELECT ë“±ê¸‰, count(*) AS ê³ ê°ìˆ˜ , avg(ì ë¦½ê¸ˆ) AS "ì ë¦½ê¸ˆ í‰ê· "
+FROM ê³ ê°
+GROUP BY ë“±ê¸‰ HAVING avg(ì ë¦½ê¸ˆ) >=1000;
 
 /*
- *  ÁÖ¹® Å×ÀÌºí¿¡¼­ °¢ ÁÖ¹®°í°´ÀÌ ÁÖ¹®ÇÑ Á¦Ç°ÀÇ ÃÑ ÁÖ¹®¼ö·®À» ÁÖ¹® Á¦Ç°º°·Î °Ë»öÇÏ½Ã¿À.
+ *  ì£¼ë¬¸ í…Œì´ë¸”ì—ì„œ ê° ì£¼ë¬¸ê³ ê°ì´ ì£¼ë¬¸í•œ ì œí’ˆì˜ ì´ ì£¼ë¬¸ìˆ˜ëŸ‰ì„ ì£¼ë¬¸ ì œí’ˆë³„ë¡œ ê²€ìƒ‰í•˜ì‹œì˜¤.
  */
 
-SELECT ÁÖ¹®Á¦Ç°, ÁÖ¹®°í°´, sum(¼ö·®) AS ÃÑÁÖ¹®¼ö·®
-FROM ÁÖ¹®
-GROUP BY ÁÖ¹®Á¦Ç°, ÁÖ¹®°í°´;
+SELECT ì£¼ë¬¸ì œí’ˆ, ì£¼ë¬¸ê³ ê°, sum(ìˆ˜ëŸ‰) AS ì´ì£¼ë¬¸ìˆ˜ëŸ‰
+FROM ì£¼ë¬¸
+GROUP BY ì£¼ë¬¸ì œí’ˆ, ì£¼ë¬¸ê³ ê°;
 
--- banana °í°´ÀÌ ÁÖ¹®ÇÑ Á¦Ç°ÀÇ ÀÌ¸§À» °Ë»öÇÏ½Ã¿À.
+-- banana ê³ ê°ì´ ì£¼ë¬¸í•œ ì œí’ˆì˜ ì´ë¦„ì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
 
-SELECT Á¦Ç°.Á¦Ç°¸í 
-FROM Á¦Ç°, ÁÖ¹®
-WHERE ÁÖ¹®.ÁÖ¹®°í°´ = 'banana' AND Á¦Ç°.Á¦Ç°¹øÈ£ = ÁÖ¹®.ÁÖ¹®Á¦Ç°; 
+SELECT ì œí’ˆ.ì œí’ˆëª… 
+FROM ì œí’ˆ, ì£¼ë¬¸
+WHERE ì£¼ë¬¸.ì£¼ë¬¸ê³ ê° = 'banana' AND ì œí’ˆ.ì œí’ˆë²ˆí˜¸ = ì£¼ë¬¸.ì£¼ë¬¸ì œí’ˆ; 
 
--- ³ªÀÌ°¡ 30¼¼ ÀÌ»óÀÎ °í°´ÀÌ ÁÖ¹®ÇÑ Á¦Ç°ÀÇ ÁÖ¹®Á¦Ç°°ú ÁÖ¹®ÀÏÀÚ¸¦ °Ë»öÇÏ½Ã¿À.
+-- ë‚˜ì´ê°€ 30ì„¸ ì´ìƒì¸ ê³ ê°ì´ ì£¼ë¬¸í•œ ì œí’ˆì˜ ì£¼ë¬¸ì œí’ˆê³¼ ì£¼ë¬¸ì¼ìžë¥¼ ê²€ìƒ‰í•˜ì‹œì˜¤.
 
-SELECT °í°´.³ªÀÌ , ÁÖ¹®.ÁÖ¹®Á¦Ç° ,ÁÖ¹®.ÁÖ¹®ÀÏÀÚ 
-FROM °í°´,ÁÖ¹®
-WHERE °í°´.³ªÀÌ >=30 AND °í°´.°í°´¾ÆÀÌµð = ÁÖ¹®.ÁÖ¹®°í°´ ;
+SELECT ê³ ê°.ë‚˜ì´ , ì£¼ë¬¸.ì£¼ë¬¸ì œí’ˆ ,ì£¼ë¬¸.ì£¼ë¬¸ì¼ìž 
+FROM ê³ ê°,ì£¼ë¬¸
+WHERE ê³ ê°.ë‚˜ì´ >=30 AND ê³ ê°.ê³ ê°ì•„ì´ë”” = ì£¼ë¬¸.ì£¼ë¬¸ê³ ê° ;
 
 /*
- *  Å×ÀÌºíÀÇ ÀÌ¸§À» ´ë½ÅÇÏ´Â ´Ü¼øÇÑ º°¸íÀ» Á¦½ÃÇÏ¿© ÁúÀÇ¹® ÀÛ¼ºÇÔ
+ *  í…Œì´ë¸”ì˜ ì´ë¦„ì„ ëŒ€ì‹ í•˜ëŠ” ë‹¨ìˆœí•œ ë³„ëª…ì„ ì œì‹œí•˜ì—¬ ì§ˆì˜ë¬¸ ìž‘ì„±í•¨
  */
 
-SELECT c.°í°´¾ÆÀÌµð , o.ÁÖ¹®Á¦Ç° ,o.ÁÖ¹®ÀÏÀÚ 
-FROM °í°´ c,ÁÖ¹® o 
-WHERE c.³ªÀÌ >=30 AND c.°í°´¾ÆÀÌµð = o.ÁÖ¹®°í°´ ;
+SELECT c.ê³ ê°ì•„ì´ë”” , o.ì£¼ë¬¸ì œí’ˆ ,o.ì£¼ë¬¸ì¼ìž 
+FROM ê³ ê° c,ì£¼ë¬¸ o 
+WHERE c.ë‚˜ì´ >=30 AND c.ê³ ê°ì•„ì´ë”” = o.ì£¼ë¬¸ê³ ê° ;
 
--- °í¸í¼® °í°´ÀÌ ÁÖ¹®ÇÑ Á¦Ç°ÀÇ Á¦Ç°¸íÀ» °Ë»öÇÏ½Ã¿À.
-SELECT c.°í°´ÀÌ¸§ , i.Á¦Ç°¸í 
-FROM °í°´ c,Á¦Ç° i,ÁÖ¹® o
-WHERE c.°í°´ÀÌ¸§ = '°í¸í¼®' AND c.°í°´¾ÆÀÌµð = o.ÁÖ¹®°í°´ AND o.ÁÖ¹®Á¦Ç° =i.Á¦Ç°¹øÈ£ ; 
+-- ê³ ëª…ì„ ê³ ê°ì´ ì£¼ë¬¸í•œ ì œí’ˆì˜ ì œí’ˆëª…ì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
+SELECT c.ê³ ê°ì´ë¦„ , i.ì œí’ˆëª… 
+FROM ê³ ê° c,ì œí’ˆ i,ì£¼ë¬¸ o
+WHERE c.ê³ ê°ì´ë¦„ = 'ê³ ëª…ì„' AND c.ê³ ê°ì•„ì´ë”” = o.ì£¼ë¬¸ê³ ê° AND o.ì£¼ë¬¸ì œí’ˆ =i.ì œí’ˆë²ˆí˜¸ ; 
 
 
 

@@ -1,10 +1,10 @@
--- È¸¿ø Å×ÀÌºí»ý¼º
+-- íšŒì› í…Œì´ë¸”ìƒì„±
 /*
  *  1	ID	id	varchar2	10
-	2	ºñ¹Ð¹øÈ£	pwd	varchar2	10
-	3	ÀÌ¸§	name	varchar2	50
-	4	ÀÌ¸ÞÀÏ	email	varchar2	50
-	5	°¡ÀÔÀÏÀÚ	joinDate	date	
+	2	ë¹„ë°€ë²ˆí˜¸	pwd	varchar2	10
+	3	ì´ë¦„	name	varchar2	50
+	4	ì´ë©”ì¼	email	varchar2	50
+	5	ê°€ìž…ì¼ìž	joinDate	date	
  * 
  */
 DROP TABLE T_MEMBER CASCADE CONSTRAINT;
@@ -16,11 +16,11 @@ CREATE TABLE T_MEMBER (
 	JOINDATE DATE DEFAULT SYSDATE
 );
 
--- È¸¿ø Á¤º¸ Ãß°¡
-INSERT INTO T_MEMBER VALUES ('LEE','0824','ÀÌ¼ø½Å','LEE@gamil.com',sysdate);
-INSERT INTO T_MEMBER VALUES ('HONG','0824','È«±æµ¿','HONG@gamil.com',sysdate);
-INSERT INTO T_MEMBER VALUES ('SHIN','0824','½Å»çÀÓ´ç','SHIN@gamil.com',sysdate);
-INSERT INTO T_member (ID,PWD,NAME,EMAIL) VALUES ('TEST','0824','Å×½ºÆ®','TEST@gmail.com');
+-- íšŒì› ì •ë³´ ì¶”ê°€
+INSERT INTO T_MEMBER VALUES ('LEE','0824','ì´ìˆœì‹ ','LEE@gamil.com',sysdate);
+INSERT INTO T_MEMBER VALUES ('HONG','0824','í™ê¸¸ë™','HONG@gamil.com',sysdate);
+INSERT INTO T_MEMBER VALUES ('SHIN','0824','ì‹ ì‚¬ìž„ë‹¹','SHIN@gamil.com',sysdate);
+INSERT INTO T_member (ID,PWD,NAME,EMAIL) VALUES ('TEST','0824','í…ŒìŠ¤íŠ¸','TEST@gmail.com');
 COMMIT;
 
 SELECT * FROM T_MEMBER;
@@ -32,7 +32,7 @@ WHERE ID='LEE1' AND PWD = '0824'
 ;
 
 
--- Å×ÀÌºí ¹× ½ÃÄö½º »ý¼º
+-- í…Œì´ë¸” ë° ì‹œí€€ìŠ¤ ìƒì„±
 
 DROP TABLE MEMBER CASCADE CONSTRAINTS;
 CREATE TABLE MEMBER (
@@ -44,8 +44,8 @@ CREATE TABLE MEMBER (
 );
 
 
-INSERT INTO "MEMBER" (ID,PASS,NAME) VALUES ('EZEN','0824','ÀÌÁ¨');
-INSERT INTO "MEMBER" (ID,PASS,NAME) VALUES ('bob','1234','Á¤¿ø¿µ');
+INSERT INTO "MEMBER" (ID,PASS,NAME) VALUES ('EZEN','0824','ì´ì  ');
+INSERT INTO "MEMBER" (ID,PASS,NAME) VALUES ('bob','1234','ì •ì›ì˜');
 SELECT * FROM MEMBER WHERE ID = 'EZEN' AND PASS ='0824';
 COMMIT;
 DROP TABLE board CASCADE CONSTRAINTS;
@@ -57,57 +57,57 @@ CREATE TABLE board (
 		postdate DATE DEFAULT sysdate NOT NULL,
 		visitcount number(6)
 );
--- ¿Ü·¡Å°·Î Å×ÀÌºí »çÀÌÀÇ °ü°è ¼³Á¤
--- board Å×ÀÌºíÀÇ id ÄÃ·³ÀÌ member Å×ÀÌºíÀÇ idÄÃ·³À» ÂüÁ¶ÇÏµµ·Ï ÇØÁÖ´Â ¿Ü·¡Å° »ý¼º
+-- ì™¸ëž˜í‚¤ë¡œ í…Œì´ë¸” ì‚¬ì´ì˜ ê´€ê³„ ì„¤ì •
+-- board í…Œì´ë¸”ì˜ id ì»¬ëŸ¼ì´ member í…Œì´ë¸”ì˜ idì»¬ëŸ¼ì„ ì°¸ì¡°í•˜ë„ë¡ í•´ì£¼ëŠ” ì™¸ëž˜í‚¤ ìƒì„±
 ALTER TABLE board ADD CONSTRAINT board_member_fk FOREIGN KEY (id) REFERENCES member(id);
 COMMIT;
 
--- ÀÏ·Ã¹øÈ£Çü ½ÃÄö½º(Sequence) °´Ã¼ »ý¼º
--- : ¼øÂ÷ÀûÀ¸·Î Áõ°¡ÇÏ´Â ¼ø¹øÀ» ¹ÝÈ¯ÇÏ´Â µ¥ÀÌÅÍº£ÀÌ½º °´Ã¼ÀÓ.
+-- ì¼ë ¨ë²ˆí˜¸í˜• ì‹œí€€ìŠ¤(Sequence) ê°ì²´ ìƒì„±
+-- : ìˆœì°¨ì ìœ¼ë¡œ ì¦ê°€í•˜ëŠ” ìˆœë²ˆì„ ë°˜í™˜í•˜ëŠ” ë°ì´í„°ë² ì´ìŠ¤ ê°ì²´ìž„.
 DROP SEQUENCE seq_board_num;
 CREATE SEQUENCE seq_board_num
-	INCREMENT BY 1				-- 1¾¿ Áõ°¡
-	START WITH 1				-- ½ÃÀÛ°ª 1
-	MINVALUE 1					-- ÃÖ¼Ò°ª 1
-	nomaxvalue					-- ÃÖ´ë°ªÀº ¹«ÇÑ´ë
-	nocycle						-- ¼øÈ¯ÇÏÁö ¾ÊÀ½
-	nocache						-- Ä³½Ã ¾ÈÇÔ
+	INCREMENT BY 1				-- 1ì”© ì¦ê°€
+	START WITH 1				-- ì‹œìž‘ê°’ 1
+	MINVALUE 1					-- ìµœì†Œê°’ 1
+	nomaxvalue					-- ìµœëŒ€ê°’ì€ ë¬´í•œëŒ€
+	nocycle						-- ìˆœí™˜í•˜ì§€ ì•ŠìŒ
+	nocache						-- ìºì‹œ ì•ˆí•¨
 	;
 
-INSERT INTO board VALUES (seq_board_num.nextval, '¿À´ÃÀº 6¿ù 2Â°ÁÖ','¿ù¿äÀÏ°°Àº È­¿äÀÏÀÔ´Ï´Ù.'
+INSERT INTO board VALUES (seq_board_num.nextval, 'ì˜¤ëŠ˜ì€ 6ì›” 2ì§¸ì£¼','ì›”ìš”ì¼ê°™ì€ í™”ìš”ì¼ìž…ë‹ˆë‹¤.'
 		,'EZEN',sysdate,0);
-INSERT INTO board VALUES (seq_board_num.nextval, '2022³â Àý¹ÝÀÌ °¨','¾î´Àµ¡ ¿ÃÇØµµ Àý¹ÝÀÌ Áö³ª°©´Ï´Ù.'
+INSERT INTO board VALUES (seq_board_num.nextval, '2022ë…„ ì ˆë°˜ì´ ê°','ì–´ëŠë§ ì˜¬í•´ë„ ì ˆë°˜ì´ ì§€ë‚˜ê°‘ë‹ˆë‹¤.'
 		,'EZEN',sysdate,0);
-INSERT INTO board VALUES (seq_board_num.nextval, '½Å³íÇö¿ª ºÐ´ç¼º °³Åë','°ø»ç°¡ ´Ù ¹«¸®µÇ¾î¼­ ÀÎµµ°¡ ³Ð¾îÁ³À¸³ª °Ç¹° °ø»ç°¡ ÇÑÂÊ¿¡¼­..'
+INSERT INTO board VALUES (seq_board_num.nextval, 'ì‹ ë…¼í˜„ì—­ ë¶„ë‹¹ì„± ê°œí†µ','ê³µì‚¬ê°€ ë‹¤ ë¬´ë¦¬ë˜ì–´ì„œ ì¸ë„ê°€ ë„“ì–´ì¡Œìœ¼ë‚˜ ê±´ë¬¼ ê³µì‚¬ê°€ í•œìª½ì—ì„œ..'
 		,'EZEN',sysdate,0);
-INSERT INTO board VALUES (seq_board_num.nextval, 'BoB´ÔÀÇ °Ô½Ã¹°ÀÔ´Ï´Ù.','ÀÚ¹Ù spring µî ¿©·¯°¡Áö °øºÎ¸¦ ÇÏ°íÀÖ½À´Ï´Ù.'
+INSERT INTO board VALUES (seq_board_num.nextval, 'BoBë‹˜ì˜ ê²Œì‹œë¬¼ìž…ë‹ˆë‹¤.','ìžë°” spring ë“± ì—¬ëŸ¬ê°€ì§€ ê³µë¶€ë¥¼ í•˜ê³ ìžˆìŠµë‹ˆë‹¤.'
 		,'EZEN',sysdate,0);
 COMMIT;
 
 SELECT * FROM BOARD ORDER BY NUM DESC;
 
-SELECT * FROM board WHERE title LIKE '%¿À´Ã%';
+SELECT * FROM board WHERE title LIKE '%ì˜¤ëŠ˜%';
 
-SELECT * FROM board WHERE CONTENT LIKE '%¿ù%';
+SELECT * FROM board WHERE CONTENT LIKE '%ì›”%';
 
-SELECT count(*) FROM board WHERE title LIKE '%¿À´Ã%';
+SELECT count(*) FROM board WHERE title LIKE '%ì˜¤ëŠ˜%';
 
-SELECT count(*) FROM board WHERE CONTENT LIKE '%¿ù%';
+SELECT count(*) FROM board WHERE CONTENT LIKE '%ì›”%';
 
 
 SELECT b.*,m.NAME FROM "MEMBER" m INNER JOIN BOARD b ON m.ID = b.ID 
 WHERE num = 3
 ;
 
--- Á¶È¸¼ö Áõ°¡
+-- ì¡°íšŒìˆ˜ ì¦ê°€
 UPDATE BOARD SET VISITCOUNT = VISITCOUNT +1 WHERE num = 1;
 COMMIT;
 
--- °Ô½Ã¹° ¼öÁ¤
-UPDATE BOARD SET TITLE = '³»ÀÏµµ ¾Ë°í¸®Áò ¹®Á¦¸¦ Ç®°Ú½À´Ï´Ù.', CONTENT = 'DP¹®Á¦¸¦ ¸¶½ºÅÍ ÇÏ°Ú½À´Ï´Ù' WHERE NUM = 8;
+-- ê²Œì‹œë¬¼ ìˆ˜ì •
+UPDATE BOARD SET TITLE = 'ë‚´ì¼ë„ ì•Œê³ ë¦¬ì¦˜ ë¬¸ì œë¥¼ í’€ê² ìŠµë‹ˆë‹¤.', CONTENT = 'DPë¬¸ì œë¥¼ ë§ˆìŠ¤í„° í•˜ê² ìŠµë‹ˆë‹¤' WHERE NUM = 8;
 COMMIT;
 
--- °Ô½Ã¹° »èÁ¦
+-- ê²Œì‹œë¬¼ ì‚­ì œ
 DELETE FROM board WHERE num = 6;
 COMMIT;
 
@@ -130,41 +130,41 @@ CREATE TABLE mvcboard (
 
 INSERT INTO EZEN.MVCBOARD
 (IDX, NAME, TITLE, CONTENT, PASS)
-VALUES(seq_board_num.nextval, 'bob', 'bobÀÇ °³¹ßÀÏ±â', 'ÀÚ¹Ù¿Í ½ºÇÁ¸µÀ» °øºÎÇÏ°íÀÖ½À´Ï´Ù.', '0824' );
+VALUES(seq_board_num.nextval, 'bob', 'bobì˜ ê°œë°œì¼ê¸°', 'ìžë°”ì™€ ìŠ¤í”„ë§ì„ ê³µë¶€í•˜ê³ ìžˆìŠµë‹ˆë‹¤.', '0824' );
 INSERT INTO EZEN.MVCBOARD
 (IDX, NAME, TITLE, CONTENT, PASS)
-VALUES(seq_board_num.nextval, 'bob', 'bobÀÇ °³¹ßÀÏ±â2', 'ÀÚ¹Ù¿Í ½ºÇÁ¸µÀ» °øºÎÇÏ°íÀÖ½À´Ï´Ù.2', '0824' );
+VALUES(seq_board_num.nextval, 'bob', 'bobì˜ ê°œë°œì¼ê¸°2', 'ìžë°”ì™€ ìŠ¤í”„ë§ì„ ê³µë¶€í•˜ê³ ìžˆìŠµë‹ˆë‹¤.2', '0824' );
 INSERT INTO EZEN.MVCBOARD
 (IDX, NAME, TITLE, CONTENT, PASS)
-VALUES(seq_board_num.nextval, 'bob', 'bobÀÇ °³¹ßÀÏ±â3', 'ÀÚ¹Ù¿Í ½ºÇÁ¸µÀ» °øºÎÇÏ°íÀÖ½À´Ï´Ù.3', '0824' );
+VALUES(seq_board_num.nextval, 'bob', 'bobì˜ ê°œë°œì¼ê¸°3', 'ìžë°”ì™€ ìŠ¤í”„ë§ì„ ê³µë¶€í•˜ê³ ìžˆìŠµë‹ˆë‹¤.3', '0824' );
 INSERT INTO EZEN.MVCBOARD
 (IDX, NAME, TITLE, CONTENT, PASS)
-VALUES(seq_board_num.nextval, 'bob', 'bobÀÇ °³¹ßÀÏ±â4', 'ÀÚ¹Ù¿Í ½ºÇÁ¸µÀ» °øºÎÇÏ°íÀÖ½À´Ï´Ù.4', '0824' );
+VALUES(seq_board_num.nextval, 'bob', 'bobì˜ ê°œë°œì¼ê¸°4', 'ìžë°”ì™€ ìŠ¤í”„ë§ì„ ê³µë¶€í•˜ê³ ìžˆìŠµë‹ˆë‹¤.4', '0824' );
 INSERT INTO EZEN.MVCBOARD
 (IDX, NAME, TITLE, CONTENT, PASS)
-VALUES(seq_board_num.nextval, 'bob', 'bobÀÇ °³¹ßÀÏ±â5', 'ÀÚ¹Ù¿Í ½ºÇÁ¸µÀ» °øºÎÇÏ°íÀÖ½À´Ï´Ù.5', '0824' );
+VALUES(seq_board_num.nextval, 'bob', 'bobì˜ ê°œë°œì¼ê¸°5', 'ìžë°”ì™€ ìŠ¤í”„ë§ì„ ê³µë¶€í•˜ê³ ìžˆìŠµë‹ˆë‹¤.5', '0824' );
 COMMIT;
 INSERT INTO EZEN.MVCBOARD
 (IDX, NAME, TITLE, CONTENT, PASS)
-VALUES(seq_board_num.nextval, 'bob', 'bobÀÇ °³¹ßÀÏ±â6', 'ÀÚ¹Ù¿Í ½ºÇÁ¸µÀ» °øºÎÇÏ°íÀÖ½À´Ï´Ù.6', '0824' );
+VALUES(seq_board_num.nextval, 'bob', 'bobì˜ ê°œë°œì¼ê¸°6', 'ìžë°”ì™€ ìŠ¤í”„ë§ì„ ê³µë¶€í•˜ê³ ìžˆìŠµë‹ˆë‹¤.6', '0824' );
 INSERT INTO EZEN.MVCBOARD
 (IDX, NAME, TITLE, CONTENT, PASS)
-VALUES(seq_board_num.nextval, 'bob', 'bobÀÇ °³¹ßÀÏ±â7', 'ÀÚ¹Ù¿Í ½ºÇÁ¸µÀ» °øºÎÇÏ°íÀÖ½À´Ï´Ù.7', '0824' );
+VALUES(seq_board_num.nextval, 'bob', 'bobì˜ ê°œë°œì¼ê¸°7', 'ìžë°”ì™€ ìŠ¤í”„ë§ì„ ê³µë¶€í•˜ê³ ìžˆìŠµë‹ˆë‹¤.7', '0824' );
 INSERT INTO EZEN.MVCBOARD
 (IDX, NAME, TITLE, CONTENT, PASS)
-VALUES(seq_board_num.nextval, 'bob', 'bobÀÇ °³¹ßÀÏ±â8', 'ÀÚ¹Ù¿Í ½ºÇÁ¸µÀ» °øºÎÇÏ°íÀÖ½À´Ï´Ù.8', '0824' );
+VALUES(seq_board_num.nextval, 'bob', 'bobì˜ ê°œë°œì¼ê¸°8', 'ìžë°”ì™€ ìŠ¤í”„ë§ì„ ê³µë¶€í•˜ê³ ìžˆìŠµë‹ˆë‹¤.8', '0824' );
 INSERT INTO EZEN.MVCBOARD
 (IDX, NAME, TITLE, CONTENT, PASS)
-VALUES(seq_board_num.nextval, 'bob', 'bobÀÇ °³¹ßÀÏ±â9', 'ÀÚ¹Ù¿Í ½ºÇÁ¸µÀ» °øºÎÇÏ°íÀÖ½À´Ï´Ù.9', '0824' );
+VALUES(seq_board_num.nextval, 'bob', 'bobì˜ ê°œë°œì¼ê¸°9', 'ìžë°”ì™€ ìŠ¤í”„ë§ì„ ê³µë¶€í•˜ê³ ìžˆìŠµë‹ˆë‹¤.9', '0824' );
 INSERT INTO EZEN.MVCBOARD
 (IDX, NAME, TITLE, CONTENT, PASS)
-VALUES(seq_board_num.nextval, 'bob', 'bobÀÇ °³¹ßÀÏ±â10', 'ÀÚ¹Ù¿Í ½ºÇÁ¸µÀ» °øºÎÇÏ°íÀÖ½À´Ï´Ù.10', '0824' );
+VALUES(seq_board_num.nextval, 'bob', 'bobì˜ ê°œë°œì¼ê¸°10', 'ìžë°”ì™€ ìŠ¤í”„ë§ì„ ê³µë¶€í•˜ê³ ìžˆìŠµë‹ˆë‹¤.10', '0824' );
 
 SELECT id,pass,rownum FROM "MEMBER";
 
 SELECT * FROM MVCBOARD ORDER BY IDX DESC ;
 
--- ÆäÀÌÂ¡ Ã³¸® Äõ¸®¹®
+-- íŽ˜ì´ì§• ì²˜ë¦¬ ì¿¼ë¦¬ë¬¸
 
 SELECT TB.*, ROWNUM rnum
 FROM (SELECT * FROM MVCBOARD ORDER BY IDX DESC ) TB
@@ -193,7 +193,7 @@ CREATE TABLE myfile(
 
 INSERT INTO EZEN.MYFILE
 (IDX, NAME, TITLE, CATE, OFILE, SFILE)
-VALUES(seq_board_num.nextval, 'Á¤¿ø¿µ', 'test', '»çÁø', 'test.jpg', '20220621.jpg');
+VALUES(seq_board_num.nextval, 'ì •ì›ì˜', 'test', 'ì‚¬ì§„', 'test.jpg', '20220621.jpg');
 
 
 SELECT * FROM MVCBOARD WHERE IDX = '38';

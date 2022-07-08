@@ -1,63 +1,63 @@
 /* 
- * °í°´ Å×ÀÌºí¿¡¼­ µî±ÞÀÌ VIPÀÎ °í°´ÀÇ °í°´¾ÆÀÌµð, °í°´ÀÌ¸§, ³ªÀÌ·Î ±¸¼ºµÈ ºä¸¦
- * ¿ì¼ö°í°´ÀÌ¶ó´Â ÀÌ¸§À¸·Î »ý¼ºÇÏ½Ã¿À.
- * ±×·± ´ÙÀ½ ¿ì¼ö°í°´ ºäÀÇ ¸ðµç ³»¿ëÀ» °Ë»öÇÏ½Ã¿À
+ * ê³ ê° í…Œì´ë¸”ì—ì„œ ë“±ê¸‰ì´ VIPì¸ ê³ ê°ì˜ ê³ ê°ì•„ì´ë””, ê³ ê°ì´ë¦„, ë‚˜ì´ë¡œ êµ¬ì„±ëœ ë·°ë¥¼
+ * ìš°ìˆ˜ê³ ê°ì´ë¼ëŠ” ì´ë¦„ìœ¼ë¡œ ìƒì„±í•˜ì‹œì˜¤.
+ * ê·¸ëŸ° ë‹¤ìŒ ìš°ìˆ˜ê³ ê° ë·°ì˜ ëª¨ë“  ë‚´ìš©ì„ ê²€ìƒ‰í•˜ì‹œì˜¤
  */ 
 
-CREATE VIEW ¿ì¼ö°í°´ (°í°´¾ÆÀÌµð, °í°´ÀÌ¸§, ³ªÀÌ)
-AS SELECT °í°´¾ÆÀÌµð,°í°´ÀÌ¸§,³ªÀÌ
-FROM °í°´
-WHERE µî±Þ = 'vip'
+CREATE VIEW ìš°ìˆ˜ê³ ê° (ê³ ê°ì•„ì´ë””, ê³ ê°ì´ë¦„, ë‚˜ì´)
+AS SELECT ê³ ê°ì•„ì´ë””,ê³ ê°ì´ë¦„,ë‚˜ì´
+FROM ê³ ê°
+WHERE ë“±ê¸‰ = 'vip'
 WITH CHECK OPTION;
 
 SELECT *
-FROM ¿ì¼ö°í°´;
+FROM ìš°ìˆ˜ê³ ê°;
 
 /*
- * Á¦Ç° Å×ÀÌºí¿¡¼­ Á¦Á¶¾÷Ã¼º° Á¦Ç°¼ö·Î ±¸¼ºµÈ ºä¸¦ ¾÷Ã¼º°Á¦Ç°¼ö¶ó´Â ÀÌ¸§À¸·Î »ý¼ºÇÏ½Ã¿À.
- * ±×·±´ÙÀ½ ¾÷Ã¼º°Á¦Ç°¼ö ºäÀÇ ¸ðµç³»¿ëÀ» °Ë»öÇÏ½Ã¿À.
+ * ì œí’ˆ í…Œì´ë¸”ì—ì„œ ì œì¡°ì—…ì²´ë³„ ì œí’ˆìˆ˜ë¡œ êµ¬ì„±ëœ ë·°ë¥¼ ì—…ì²´ë³„ì œí’ˆìˆ˜ë¼ëŠ” ì´ë¦„ìœ¼ë¡œ ìƒì„±í•˜ì‹œì˜¤.
+ * ê·¸ëŸ°ë‹¤ìŒ ì—…ì²´ë³„ì œí’ˆìˆ˜ ë·°ì˜ ëª¨ë“ ë‚´ìš©ì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
  */ 
 
-CREATE VIEW ¾÷Ã¼º°Á¦Ç°¼ö (Á¦Á¶¾÷Ã¼, Á¦Ç°¼ö)
-AS SELECT Á¦Á¶¾÷Ã¼, count(*)
-FROM Á¦Ç°
-GROUP BY Á¦Á¶¾÷Ã¼
+CREATE VIEW ì—…ì²´ë³„ì œí’ˆìˆ˜ (ì œì¡°ì—…ì²´, ì œí’ˆìˆ˜)
+AS SELECT ì œì¡°ì—…ì²´, count(*)
+FROM ì œí’ˆ
+GROUP BY ì œì¡°ì—…ì²´
 WITH CHECK OPTION;
 
 SELECT *
-FROM ¾÷Ã¼º°Á¦Ç°¼ö;
+FROM ì—…ì²´ë³„ì œí’ˆìˆ˜;
 
 
--- ¿ì¼ö°í°´ ºä¿¡¼­ ³ªÀÌ°¡ 25»ì ÀÌ»óÀÌ °í°´¿¡ ´ëÇÑ ¸ðµç ³»¿ëÀ» Ãâ·Â
+-- ìš°ìˆ˜ê³ ê° ë·°ì—ì„œ ë‚˜ì´ê°€ 25ì‚´ ì´ìƒì´ ê³ ê°ì— ëŒ€í•œ ëª¨ë“  ë‚´ìš©ì„ ì¶œë ¥
 
 SELECT *
-FROM ¿ì¼ö°í°´
-WHERE ³ªÀÌ >= 25;
+FROM ìš°ìˆ˜ê³ ê°
+WHERE ë‚˜ì´ >= 25;
 
-CREATE VIEW Á¦Ç°1
-AS SELECT Á¦Ç°¹øÈ£, Àç°í·®, Á¦Á¶¾÷Ã¼ 
-FROM Á¦Ç°
+CREATE VIEW ì œí’ˆ1
+AS SELECT ì œí’ˆë²ˆí˜¸, ìž¬ê³ ëŸ‰, ì œì¡°ì—…ì²´ 
+FROM ì œí’ˆ
 WITH CHECK OPTION;
 
-SELECT * FROM Á¦Ç°1;
+SELECT * FROM ì œí’ˆ1;
 
-CREATE VIEW Á¦Ç°2
-AS SELECT Á¦Ç°¸í, Àç°í·®, Á¦Á¶¾÷Ã¼ 
-FROM Á¦Ç°
+CREATE VIEW ì œí’ˆ2
+AS SELECT ì œí’ˆëª…, ìž¬ê³ ëŸ‰, ì œì¡°ì—…ì²´ 
+FROM ì œí’ˆ
 WITH CHECK OPTION;
 
-SELECT * FROM Á¦Ç°2;
+SELECT * FROM ì œí’ˆ2;
 
 /*
- *  Á¦Ç°¹øÈ£°¡ p08, Àç°í·®ÀÌ 1000, Á¦Á¶¾÷Ã¼°¡ ½Å¼±½ÄÇ°ÀÎ »õ·Î¿î 
- *  Á¦Ç°ÀÇ Á¤º¸¸¦ Á¦Ç° 1 ºä¿¡ »ðÀÔÇÏ½Ã¿À.
- *  ±×·± ´ÙÀ½ Á¦Ç° 1 ºä ¿¡ ÀÖ´Â ¸ðµç ³»¿ëÀ» °Ë»öÇÏ½Ã¿À.
+ *  ì œí’ˆë²ˆí˜¸ê°€ p08, ìž¬ê³ ëŸ‰ì´ 1000, ì œì¡°ì—…ì²´ê°€ ì‹ ì„ ì‹í’ˆì¸ ìƒˆë¡œìš´ 
+ *  ì œí’ˆì˜ ì •ë³´ë¥¼ ì œí’ˆ 1 ë·°ì— ì‚½ìž…í•˜ì‹œì˜¤.
+ *  ê·¸ëŸ° ë‹¤ìŒ ì œí’ˆ 1 ë·° ì— ìžˆëŠ” ëª¨ë“  ë‚´ìš©ì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
  */
 
-INSERT INTO Á¦Ç°1 VALUES ('p08',1000,'½Å¼±½ÄÇ°');
+INSERT INTO ì œí’ˆ1 VALUES ('p08',1000,'ì‹ ì„ ì‹í’ˆ');
 COMMIT;
 
-INSERT INTO Á¦Ç°2 VALUES ('½Ã¿ø³Ã¸é',1000,'½Å¼±½ÄÇ°');
+INSERT INTO ì œí’ˆ2 VALUES ('ì‹œì›ëƒ‰ë©´',1000,'ì‹ ì„ ì‹í’ˆ');
 
 
 

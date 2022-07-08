@@ -1,12 +1,12 @@
--- ¿À¶óÅ¬ ±¸ ¹öÀü ¹æ½ÄÀ¸·Î »ç¿ëÀÚ °èÁ¤ »ý¼ºÀ» À§ÇÑ ¼³Á¤
+-- ï¿½ï¿½ï¿½ï¿½? ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;	
 
-CREATE USER ezen IDENTIFIED BY 0824;			-- "ezen" »ç¿ëÀÚ °èÁ¤À» »ý¼º
+CREATE USER ezen IDENTIFIED BY 0824;			-- "ezen" ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 ALTER USER ezen account unlock;
-GRANT CONNECT, RESOURCE, DBA TO ezen;			-- "ezen" »ç¿ëÀÚ °èÁ¤¿¡°Ô ±ÇÇÑ ÁÜ
+GRANT CONNECT, RESOURCE, DBA TO ezen;			-- "ezen" ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
 
--- Å×ÀÌºí ½ºÆäÀÌ½º 
+-- ï¿½ï¿½ï¿½?ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ 
 CREATE tablespace ezen_data
 datafile 'C:\app\ezen\product\18.0.0\oradata\XE\ezen_data.dbf' SIZE 2G
 autoextend ON NEXT 512M maxsize unlimited
@@ -23,7 +23,7 @@ tempfile 'C:\app\ezen\product\18.0.0\oradata\XE\ezen_temp.dbf' SIZE 500M
 autoextend ON NEXT 100M maxsize unlimited
 ;
 
--- »ý¼ºÇÑ Å×ÀÌºí ½ºÆäÀÌ½º¸¦ ezen »ç¿ëÀÚ °èÁ¤ÀÇ default Å×ÀÌºí ½ºÆäÀÌ½º·Î ÁöÁ¤
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½?ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ ezen ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ default ï¿½ï¿½ï¿½?ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 ALTER USER ezen DEFAULT tablespace ezen_data;
 ALTER USER ezen TEMPORARY tablespace ezen_temp;
 

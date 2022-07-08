@@ -1,18 +1,18 @@
 --
 
-SELECT LEVEL LVL, LPAD(' ',4*(LEVEL-1)) || EMP_NO || '(' || EMP_NM || ')' AS "Á¶Á÷ÀÎ¿ø",
+SELECT LEVEL LVL, LPAD(' ',4*(LEVEL-1)) || EMP_NO || '(' || EMP_NM || ')' AS "ì¡°ì§ì¸ì›",
 		A.DEPT_CD ,B.DEPT_NM, CONNECT_BY_ISLEAF 
 FROM TB_EMP A, TB_DEPT B
 WHERE A.DEPT_CD = B.DEPT_CD 
-START WITH A.DIRECT_MANAGER_EMP_NO IS NULL -- °ü¸®ÀÚ »ç¿ø¹øÈ£°¡ ³ÎÀÎ °ªÀ» ½ÃÀÛ °ªÀ¸·Î ÇÔ
+START WITH A.DIRECT_MANAGER_EMP_NO IS NULL -- ê´€ë¦¬ìž ì‚¬ì›ë²ˆí˜¸ê°€ ë„ì¸ ê°’ì„ ì‹œìž‘ ê°’ìœ¼ë¡œ í•¨
 CONNECT BY PRIOR A.EMP_NO = A.DIRECT_MANAGER_EMP_NO ;
 
--- LÆÐµå
+-- LíŒ¨ë“œ
 SELECT 30,LPAD(30,5),LPAD(30,5,'0'),LPAD(30,5,'A')
 FROM DUAL;
 
--- ¼­ºê Äõ¸®
--- EMP_NO°¡ "1000000005"°¡ ¼ÓÇÑ ÆÀÀÇ ÆÀ¿øÀ» Á¶È¸ÇÏ´Â SQL¹®À» ÀÛ¼ºÇÏ½Ã¿À.
+-- ì„œë¸Œ ì¿¼ë¦¬
+-- EMP_NOê°€ "1000000005"ê°€ ì†í•œ íŒ€ì˜ íŒ€ì›ì„ ì¡°íšŒí•˜ëŠ” SQLë¬¸ì„ ìž‘ì„±í•˜ì‹œì˜¤.
 
 
 SELECT A.EMP_NO , A.EMP_NM , A.DEPT_CD 
@@ -20,38 +20,38 @@ FROM TB_EMP A
 WHERE A.DEPT_CD = (SELECT A.DEPT_CD  FROM TB_EMP A WHERE A.EMP_NO = '1000000005'); 
 
 -- TB_EMP, TB_SAL_HIS
--- 2020³â 5¿ù ±âÁØ Æò±Õ ÀÌ»óÀÇ ±Þ¿©¸¦ ¹Þ°í ÀÖ´Â Á÷¿øµéÀÇ ¸®½ºÆ®¸¦ Ãâ·ÂÇÏ½Ã¿À.
+-- 2020ë…„ 5ì›” ê¸°ì¤€ í‰ê·  ì´ìƒì˜ ê¸‰ì—¬ë¥¼ ë°›ê³  ìžˆëŠ” ì§ì›ë“¤ì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤.
 
 SELECT B.EMP_NO ,B.EMP_NM , A.PAY_DE ,A.PAY_AMT 
 FROM TB_SAL_HIS A JOIN TB_EMP B ON A.EMP_NO =B.EMP_NO 
 WHERE A.PAY_DE ='20200525' AND A.PAY_AMT 
 >= (SELECT AVG(D.PAY_AMT) FROM TB_SAL_HIS D WHERE D.PAY_DE = '20200525'); 
 
---  ¼­ºêÄõ¸®
+--  ì„œë¸Œì¿¼ë¦¬
 SELECT AVG(A.PAY_AMT)
 FROM TB_SAL_HIS A 
 WHERE A.PAY_DE LIKE '20200525';
 
--- ÇÑ±¹µ¥ÀÌÅÍº£ÀÌ½ºÁøÈï¿ø¿¡¼­ ¹ß±ÞÇÑ ÀÚ°ÝÁõ °¡Áö°í ÀÖ´Â 
--- »ç¿ø ¹øÈ£ ¹× º¸À¯ ÀÚ°ÝÁõ °³¼ö¸¦ Ãâ·ÂÇÏ½Ã¿À.
+-- í•œêµ­ë°ì´í„°ë² ì´ìŠ¤ì§„í¥ì›ì—ì„œ ë°œê¸‰í•œ ìžê²©ì¦ ê°€ì§€ê³  ìžˆëŠ” 
+-- ì‚¬ì› ë²ˆí˜¸ ë° ë³´ìœ  ìžê²©ì¦ ê°œìˆ˜ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤.
 
 SELECT A.EMP_NO , COUNT(*)
 FROM TB_EMP_CERTI A
 WHERE A.CERTI_CD IN 
 (SELECT C.CERTI_CD 
 FROM TB_CERTI C 
-WHERE C.ISSUE_INSTI_NM = 'ÇÑ±¹µ¥ÀÌÅÍº£ÀÌ½ºÁøÈï¿ø')
+WHERE C.ISSUE_INSTI_NM = 'í•œêµ­ë°ì´í„°ë² ì´ìŠ¤ì§„í¥ì›')
 GROUP BY A.EMP_NO 
 ORDER BY A.EMP_NO DESC;
 
--- ¼­ºêÄõ¸®
+-- ì„œë¸Œì¿¼ë¦¬
 SELECT C.CERTI_CD 
 FROM TB_CERTI C 
-WHERE C.ISSUE_INSTI_NM = 'ÇÑ±¹µ¥ÀÌÅÍº£ÀÌ½ºÁøÈï¿ø';
+WHERE C.ISSUE_INSTI_NM = 'í•œêµ­ë°ì´í„°ë² ì´ìŠ¤ì§„í¥ì›';
 
 
--- ´ÙÁß Äõ¸®
--- ÇÑ ºÎ¼­¿¡ 2¸í ÀÌ»ó ÀÖ´Â ºÎ¼­Áß¿¡¼­ °¢ ºÎ¼­ÀÇ »ýÀÏ±âÁØ ³ªÀÌ°¡ Á¦ÀÏ ¸¹Àº »ç¿øÀ» Ãâ·ÂÇÏ½Ã¿À.
+-- ë‹¤ì¤‘ ì¿¼ë¦¬
+-- í•œ ë¶€ì„œì— 2ëª… ì´ìƒ ìžˆëŠ” ë¶€ì„œì¤‘ì—ì„œ ê° ë¶€ì„œì˜ ìƒì¼ê¸°ì¤€ ë‚˜ì´ê°€ ì œì¼ ë§Žì€ ì‚¬ì›ì„ ì¶œë ¥í•˜ì‹œì˜¤.
 -- emp_no, emp_name, dept_cd, dept_nm, birth_de
 
 SELECT A.EMP_NO , A.EMP_NM , B.DEPT_CD ,B.DEPT_NM ,A.BIRTH_DE 
@@ -66,14 +66,14 @@ HAVING COUNT(*) > 1
 AND A.DEPT_CD =B.DEPT_CD 
 ORDER BY A.EMP_NO 
 ;
--- ¼­ºêÄõ¸®
+-- ì„œë¸Œì¿¼ë¦¬
 SELECT K.DEPT_CD , MIN(K.BIRTH_DE) AS MIN_BIRTH_DE
 FROM EZEN.TB_EMP K
 GROUP BY K.DEPT_CD 
 HAVING COUNT(*) > 1;
 
--- Á÷¿øµé Áß ÁÖ¼Ò°¡ °­³²ÀÎ Á÷¿øÀÌ ¼Ò¼ÓµÈ ºÎ¼­ÄÚµå¿Í ºÎ¼­¸íÀ» Ãâ·ÂÇÏ½Ã¿À.
--- EXISTS¹® ¼­ºêÄõ¸®
+-- ì§ì›ë“¤ ì¤‘ ì£¼ì†Œê°€ ê°•ë‚¨ì¸ ì§ì›ì´ ì†Œì†ëœ ë¶€ì„œì½”ë“œì™€ ë¶€ì„œëª…ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+-- EXISTSë¬¸ ì„œë¸Œì¿¼ë¦¬
 
 SELECT A.DEPT_CD , A.DEPT_NM 
 FROM TB_DEPT A 
@@ -82,13 +82,13 @@ WHERE EXISTS
 SELECT  1
 FROM TB_EMP K
 WHERE K.DEPT_CD = A.DEPT_CD 
-AND K.ADDR LIKE '%°­³²%'
+AND K.ADDR LIKE '%ê°•ë‚¨%'
 )
 ;
 
--- ÇÑ±¹µ¥ÀÌÅÍº£ÀÌ½ºÁøÈï¿ø¿¡¼­ ¹ß±ÞÇÑ ÀÚ°ÝÁõÀ» °¡Áö°í ÀÖ´Â »ç¶÷ÀÇ
--- »ç¿ø¹øÈ£, »ç¿ø¸í, ÀÚ°ÝÁõ ÄÚµå, ÀÚ°ÝÁõ¸íÀ» Ãâ·ÂÇÏ½Ã¿À.
--- ½ºÄ®¶ó ¼­ºêÄõ¸® 
+-- í•œêµ­ë°ì´í„°ë² ì´ìŠ¤ì§„í¥ì›ì—ì„œ ë°œê¸‰í•œ ìžê²©ì¦ì„ ê°€ì§€ê³  ìžˆëŠ” ì‚¬ëžŒì˜
+-- ì‚¬ì›ë²ˆí˜¸, ì‚¬ì›ëª…, ìžê²©ì¦ ì½”ë“œ, ìžê²©ì¦ëª…ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+-- ìŠ¤ì¹¼ë¼ ì„œë¸Œì¿¼ë¦¬ 
 SELECT A.EMP_NO , ( SELECT M.EMP_NM  FROM TB_EMP M WHERE M.EMP_NO=A.EMP_NO) AS EMP_NM 
 						, A.CERTI_CD , ( SELECT L.CERTI_NM  FROM TB_CERTI L WHERE A.CERTI_CD =L.CERTI_CD) 
 FROM TB_EMP_CERTI A
@@ -96,24 +96,24 @@ WHERE A.CERTI_CD  IN
 (
 SELECT K.CERTI_CD 
 FROM TB_CERTI K
-WHERE K.ISSUE_INSTI_NM = 'ÇÑ±¹µ¥ÀÌÅÍº£ÀÌ½ºÁøÈï¿ø'
+WHERE K.ISSUE_INSTI_NM = 'í•œêµ­ë°ì´í„°ë² ì´ìŠ¤ì§„í¥ì›'
 )
 ORDER BY EMP_NO  ;
 ;
 SELECT K.CERTI_CD 
 FROM TB_CERTI K
-WHERE K.ISSUE_INSTI_NM = 'ÇÑ±¹µ¥ÀÌÅÍº£ÀÌ½ºÁøÈï¿ø'
+WHERE K.ISSUE_INSTI_NM = 'í•œêµ­ë°ì´í„°ë² ì´ìŠ¤ì§„í¥ì›'
 ;
 
--- ÇÑ±¹µ¥ÀÌÅÍº£ÀÌ½ºÁøÈï¿ø¿¡¼­ ¹ß±ÞÇÑ ÀÚ°ÝÁõÀ» °¡Áö°í ÀÖ´Â »ç¿øÀÇ
--- »ç¿ø¹øÈ£, »ç¿ø¸í, ÀÚ°ÝÁõ ÄÚµå, ÀÚ°ÝÁõ¸íÀ» Ãâ·ÂÇÏ½Ã¿À.
--- ÀÎ¶óÀÎ ºä »ç¿ë
+-- í•œêµ­ë°ì´í„°ë² ì´ìŠ¤ì§„í¥ì›ì—ì„œ ë°œê¸‰í•œ ìžê²©ì¦ì„ ê°€ì§€ê³  ìžˆëŠ” ì‚¬ì›ì˜
+-- ì‚¬ì›ë²ˆí˜¸, ì‚¬ì›ëª…, ìžê²©ì¦ ì½”ë“œ, ìžê²©ì¦ëª…ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+-- ì¸ë¼ì¸ ë·° ì‚¬ìš©
 
 
 FROM(
 	SELECT K.CERTI_CD 
 	FROM TB_CERTI K
-	WHERE K.ISSUE_INSTI_NM = 'ÇÑ±¹µ¥ÀÌÅÍº£ÀÌ½º ÁøÈï¿ø'
+	WHERE K.ISSUE_INSTI_NM = 'í•œêµ­ë°ì´í„°ë² ì´ìŠ¤ ì§„í¥ì›'
 ) A
 ,TB_EMP_CERTI B
 WHERE A.CERTI

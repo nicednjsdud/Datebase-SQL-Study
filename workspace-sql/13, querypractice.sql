@@ -28,22 +28,22 @@ CREATE TABLE EZEN.TB_EMP_TEMP(
 ALTER TABLE EZEN.TB_EMP_TEMP  ADD CONSTRAINT PK_TB_EMP_TEMP PRIMARY KEY(EMP_NO);
 ALTER TABLE EZEN.TB_EMP_TEMP  ADD CONSTRAINT FK_TB_EMP_TEMP_01 FOREIGN KEY(DEPT_CD) REFERENCES EZEN.TB_DEPT_TEMP(DEPT_CD);
 
--- ÄÃ·³ Ãß°¡ 
--- Å×ÀÌºíÀÇ ¸¶Áö¸· ÄÃ·³ÀÌ µÇ¸ç, ÄÃ·³ÀÇ À§Ä¡¸¦ ÁöÁ¤ÇÒ ¼ö´Â ¾ø´Ù.
+-- ì»¬ëŸ¼ ì¶”ê°€ 
+-- í…Œì´ë¸”ì˜ ë§ˆì§€ë§‰ ì»¬ëŸ¼ì´ ë˜ë©°, ì»¬ëŸ¼ì˜ ìœ„ì¹˜ë¥¼ ì§€ì •í•  ìˆ˜ëŠ” ì—†ë‹¤.
 ALTER TABLE EZEN.TB_EMP_TEMP ADD (MARRIED_YN CHAR(1));
 
--- ÄÃ·³ »èÁ¦
--- ÇÑ¹ø »èÁ¦µÈ ÄÃ·³Àº º¹±¸ ºÒ°¡´É
+-- ì»¬ëŸ¼ ì‚­ì œ
+-- í•œë²ˆ ì‚­ì œëœ ì»¬ëŸ¼ì€ ë³µêµ¬ ë¶ˆê°€ëŠ¥
 ALTER TABLE EZEN.TB_EMP_TEMP DROP (MARRIED_YN);
 
--- ÄÃ·³ ¼öÁ¤
--- ÄÃ·³ÀÇ Å©±â¸¦ ´Ã¸®¼ö´Â ÀÖÁö¸¸ ÁÙÀÌÁö´Â ¸øÇÔ
--- NULL°ª¸¸ °¡Áö°í ÀÖ°Å³ª ¾Æ¹« Çàµµ ¾øÀ¸¸é ÁÙÀÏ¼ö ÀÖÀ½.
--- NOVALIDATE : DEFALULT °ªÀ» ¹Ù²Ù¸é º¯°æ ÀÛ¾÷ ÀÌÈÄ ¹ß»ýÇÏ´Â Çà »ðÀÔ¿¡¸¸ ¿µÇâÀ» ¹ÌÄ§.
+-- ì»¬ëŸ¼ ìˆ˜ì •
+-- ì»¬ëŸ¼ì˜ í¬ê¸°ë¥¼ ëŠ˜ë¦¬ìˆ˜ëŠ” ìžˆì§€ë§Œ ì¤„ì´ì§€ëŠ” ëª»í•¨
+-- NULLê°’ë§Œ ê°€ì§€ê³  ìžˆê±°ë‚˜ ì•„ë¬´ í–‰ë„ ì—†ìœ¼ë©´ ì¤„ì¼ìˆ˜ ìžˆìŒ.
+-- NOVALIDATE : DEFALULT ê°’ì„ ë°”ê¾¸ë©´ ë³€ê²½ ìž‘ì—… ì´í›„ ë°œìƒí•˜ëŠ” í–‰ ì‚½ìž…ì—ë§Œ ì˜í–¥ì„ ë¯¸ì¹¨.
 ALTER TABLE EZEN.TB_EMP_TEMP MODIFY(MARRIED_YN CHAR(1) DEFAULT 'N' NOT NULL) ;
 
 
--- ÄÃ·³ ¼öÁ¤(RENAME) -- Oracle µî ÀÏºÎ DBMS¿¡¼­¸¸ Áö¿øÇÔ
+-- ì»¬ëŸ¼ ìˆ˜ì •(RENAME) -- Oracle ë“± ì¼ë¶€ DBMSì—ì„œë§Œ ì§€ì›í•¨
 CREATE TABLE EZEN.TB_EMP_TEMP_2
 AS SELECT * FROM EZEN.TB_EMP_TEMP tet;
 
@@ -53,26 +53,26 @@ RENAME COLUMN TEL_NO TO PHONE_NO;
 ALTER TABLE EZEN.TB_EMP_TEMP_2
 RENAME COLUMN PHONE_NO TO TEL_NO;
 
--- Á¦¾àÁ¶°Ç »èÁ¦
+-- ì œì•½ì¡°ê±´ ì‚­ì œ
 ALTER TABLE EZEN.TB_EMP_TEMP DROP CONSTRAINT FK_TB_EMP_TEMP_01;
 
--- Á¦¾àÁ¶°Ç Ãß°¡
+-- ì œì•½ì¡°ê±´ ì¶”ê°€
 ALTER TABLE EZEN.TB_EMP_TEMP ADD CONSTRAINT FK_TB_EMP_TEMP_01 FOREIGN KEY(DEPT_CD) REFERENCES EZEN.TB_DEPT_TEMP(DEPT_CD);
 
--- Å×ÀÌºí ¸í º¯°æ 
+-- í…Œì´ë¸” ëª… ë³€ê²½ 
 RENAME TB_EMP_TEMP_2 TO TB_EMP_TEMP_3;
 
--- Å×ÀÌºíÀÇ µ¥ÀÌÅÍ¸¦ ÇÑ¹ø¿¡ ºñ¿ò, TRUNCATE ¸í·É ¼öÇà ½Ã »èÁ¦ÇÑ µ¥ÀÌÅÍ ROLLBACKÀÌ ºÒ°¡´É
+-- í…Œì´ë¸”ì˜ ë°ì´í„°ë¥¼ í•œë²ˆì— ë¹„ì›€, TRUNCATE ëª…ë ¹ ìˆ˜í–‰ ì‹œ ì‚­ì œí•œ ë°ì´í„° ROLLBACKì´ ë¶ˆê°€ëŠ¥
 TRUNCATE TABLE EZEN.TB_EMP_TEMP_3 ;
 
--- Å×ÀÌºí Á¦°Å
+-- í…Œì´ë¸” ì œê±°
 DROP TABLE EZEN.TB_EMP_TEMP_3 ;
 
 --------------------------------------------------------------------
 
 -- INSERT 
 INSERT INTO EZEN.TB_CERTI T (T.CERTI_CD,T.CERTI_NM,T.ISSUE_INSTI_NM)
-VALUES ('100021','SQLDÇÕ°Ý','ÀÌÁ¨IT');
+VALUES ('100021','SQLDí•©ê²©','ì´ì  IT');
 COMMIT;
 
 SELECT *
@@ -81,7 +81,7 @@ WHERE A.CERTI_CD = '10021';
 
 -- UPDATE 
 UPDATE EZEN.TB_CERTI A
-	SET A.ISSUE_INSTI_NM = 'ÀÌÁ¨IT¿Â¶óÀÎ'
+	SET A.ISSUE_INSTI_NM = 'ì´ì  ITì˜¨ë¼ì¸'
 WHERE A.CERTI_CD = '100021';
 COMMIT;
 
@@ -95,35 +95,35 @@ SELECT A.CERTI_CD , A.CERTI_NM ,A.ISSUE_INSTI_NM
 FROM EZEN.TB_CERTI A;
 
 -- SELECT DISTINCT 
--- ÄÃ·³ °ª ±âÁØ Áßº¹À» Á¦°ÅÇÑ À¯ÀÏÇÑ °ª¸¸ Ãâ·Â
+-- ì»¬ëŸ¼ ê°’ ê¸°ì¤€ ì¤‘ë³µì„ ì œê±°í•œ ìœ ì¼í•œ ê°’ë§Œ ì¶œë ¥
 
 SELECT DISTINCT A.ISSUE_INSTI_NM 
 FROM EZEN.TB_CERTI A;
 
--- ALIAS ÁöÁ¤ (AS¸¦ ÀÌ¿ëÇÏ¿© ÄÃ·³ ÀÌ¸§ ÁöÁ¤)
-SELECT A.CERTI_CD AS ÀÚ°ÝÁõÄÚµå, A.CERTI_NM AS ÀÚ°ÝÁõ¸í, A.ISSUE_INSTI_NM AS ¹ßÇà±â°ü¸í
+-- ALIAS ì§€ì • (ASë¥¼ ì´ìš©í•˜ì—¬ ì»¬ëŸ¼ ì´ë¦„ ì§€ì •)
+SELECT A.CERTI_CD AS ìžê²©ì¦ì½”ë“œ, A.CERTI_NM AS ìžê²©ì¦ëª…, A.ISSUE_INSTI_NM AS ë°œí–‰ê¸°ê´€ëª…
 FROM EZEN.TB_CERTI A;
 
--- ÇÕ¼º ¿¬»êÀÚ¸¦ ÀÌ¿ëÇÑ ¹®ÀÚ¿­ ¿¬°á
--- "||" ¿¬»êÀÚ¸¦ ÀÌ¿ëÇÏ¿© ¹®ÀÚ¿­ ¿¬°á
+-- í•©ì„± ì—°ì‚°ìžë¥¼ ì´ìš©í•œ ë¬¸ìžì—´ ì—°ê²°
+-- "||" ì—°ì‚°ìžë¥¼ ì´ìš©í•˜ì—¬ ë¬¸ìžì—´ ì—°ê²°
 SELECT A.CERTI_NM || '(' || A.CERTI_CD || ')' || '-' || A.ISSUE_INSTI_NM AS CERTI_INTO
 FROM EZEN.TB_CERTI A;
 
--- DUAL Å×ÀÌºí ÀÌ¿ëÇÑ ¿¬»ê
+-- DUAL í…Œì´ë¸” ì´ìš©í•œ ì—°ì‚°
 SELECT ((1+1)*3)/6 AS CALC_RESULT
 FROM DUAL;
 
 ----------------------------------------------------------------------------------
 -- TCL
 INSERT INTO EZEN.TB_CERTI T (T.CERTI_CD,T.CERTI_NM,T.ISSUE_INSTI_NM)
-VALUES ('100022','SQLÁö½Äº¸À¯ÀÚ','ÀÌÁ¨IT');
+VALUES ('100022','SQLì§€ì‹ë³´ìœ ìž','ì´ì  IT');
 COMMIT;
 
 SELECT *
 FROM EZEN.TB_CERTI A
 WHERE A.CERTI_CD ='100022';
 
-UPDATE EZEN.TB_CERTI SET CERTI_NM = 'SQL°æÇèº¸À¯ÀÚ'
+UPDATE EZEN.TB_CERTI SET CERTI_NM = 'SQLê²½í—˜ë³´ìœ ìž'
 WHERE CERTI_CD = '100022';
 COMMIT;
 
@@ -132,34 +132,34 @@ WHERE CERTI_CD ='100022';
 COMMIT;
 
 INSERT INTO EZEN.TB_CERTI T (T.CERTI_CD,T.CERTI_NM,T.ISSUE_INSTI_NM)
-VALUES ('100022','SQLÁö½Äº¸À¯ÀÚ','ÀÌÁ¨IT');
+VALUES ('100022','SQLì§€ì‹ë³´ìœ ìž','ì´ì  IT');
 ROLLBACK;
 
 ----------------------------------------------------------------------------------
-SAVEPOINT SVPT1;		-- ¿©±â°¡ ¼¼ÀÌºê Æ÷ÀÎÆ® ÁöÁ¡
+SAVEPOINT SVPT1;		-- ì—¬ê¸°ê°€ ì„¸ì´ë¸Œ í¬ì¸íŠ¸ ì§€ì 
 INSERT INTO EZEN.TB_CERTI T (T.CERTI_CD,T.CERTI_NM,T.ISSUE_INSTI_NM)
-VALUES ('100022','SQLÁö½Äº¸À¯ÀÚ','ÀÌÁ¨IT');
+VALUES ('100022','SQLì§€ì‹ë³´ìœ ìž','ì´ì  IT');
 
-UPDATE EZEN.TB_CERTI SET CERTI_NM = 'SQL°æÇèº¸À¯ÀÚ'
+UPDATE EZEN.TB_CERTI SET CERTI_NM = 'SQLê²½í—˜ë³´ìœ ìž'
 WHERE CERTI_CD = '100022';
 
-ROLLBACK TO SVPT1;		-- ¼¼ÀÌºê Æ÷ÀÎÆ® ÁöÁ¡(SVPT1)À¸·Î ·Ñ¹é, INSERT¹× UPDATE´Â ¸ðµÎ ·Ñ¹éµÊ.
+ROLLBACK TO SVPT1;		-- ì„¸ì´ë¸Œ í¬ì¸íŠ¸ ì§€ì (SVPT1)ìœ¼ë¡œ ë¡¤ë°±, INSERTë° UPDATEëŠ” ëª¨ë‘ ë¡¤ë°±ë¨.
 
 DELETE FROM EZEN.TB_CERTI A
-WHERE CERTI_CD ='100022';	-- »èÁ¦ ½ÇÆÐ (µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾ÊÀ½)
+WHERE CERTI_CD ='100022';	-- ì‚­ì œ ì‹¤íŒ¨ (ë°ì´í„°ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ)
 COMMIT;
 ----------------------------------------------------------------------------------
-SAVEPOINT SVPT1;		-- ¼¼ÀÌºê Æ÷ÀÎÆ®1
+SAVEPOINT SVPT1;		-- ì„¸ì´ë¸Œ í¬ì¸íŠ¸1
 
 INSERT INTO EZEN.TB_CERTI T (T.CERTI_CD,T.CERTI_NM,T.ISSUE_INSTI_NM)
-VALUES ('100022','SQLÁö½Äº¸À¯ÀÚ','ÀÌÁ¨IT');
+VALUES ('100022','SQLì§€ì‹ë³´ìœ ìž','ì´ì  IT');
 
-SAVEPOINT SVPT2;		-- ¼¼ÀÌºê Æ÷ÀÎÆ®2
+SAVEPOINT SVPT2;		-- ì„¸ì´ë¸Œ í¬ì¸íŠ¸2
 
-UPDATE EZEN.TB_CERTI SET CERTI_NM = 'SQL°æÇèº¸À¯ÀÚ'
+UPDATE EZEN.TB_CERTI SET CERTI_NM = 'SQLê²½í—˜ë³´ìœ ìž'
 WHERE CERTI_CD = '100022';
 
-SAVEPOINT SVPT3;		-- ¼¼ÀÌºê Æ÷ÀÎÆ®3
+SAVEPOINT SVPT3;		-- ì„¸ì´ë¸Œ í¬ì¸íŠ¸3
 
 DELETE FROM EZEN.TB_CERTI A
 WHERE CERTI_CD ='100022';

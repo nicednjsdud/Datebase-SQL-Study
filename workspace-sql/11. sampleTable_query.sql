@@ -1,18 +1,18 @@
---  ¼­ºêÄõ¸®
+--  ì„œë¸Œì¿¼ë¦¬
 
 select max(list_price)
 from products;
 
--- ¼­ºêÄõ¸®¸¦ ÀÌ¿ëÇØ¼­ list_price °¡ ÃÖ´ë°ªÀÎ ÇàÀ» Ãâ·Â
+-- ì„œë¸Œì¿¼ë¦¬ë¥¼ ì´ìš©í•´ì„œ list_price ê°€ ìµœëŒ€ê°’ì¸ í–‰ì„ ì¶œë ¥
 
 select product_id, product_name,list_price
 from products
 where list_price = (select max(list_price)from products);
 
--- ½ºÄ®¶ó ¼­ºêÄõ¸® 
+-- ìŠ¤ì¹¼ë¼ ì„œë¸Œì¿¼ë¦¬ 
 /*
-    °¢ Á¦Ç°ÀÇ °¡°ÝÀ» ±¸ÇÏ¸é¼­ ÇØ´ç Á¦Ç°ÀÌ À§Ä¡ÇÏ°í ÀÖ´Â Á¦Ç° Ä«Å×°í¸®ÀÇ Æò±Õ
-    °¡°Ýµµ °°ÀÌ ±¸ÇÏ½Ã¿À.
+    ê° ì œí’ˆì˜ ê°€ê²©ì„ êµ¬í•˜ë©´ì„œ í•´ë‹¹ ì œí’ˆì´ ìœ„ì¹˜í•˜ê³  ìžˆëŠ” ì œí’ˆ ì¹´í…Œê³ ë¦¬ì˜ í‰ê· 
+    ê°€ê²©ë„ ê°™ì´ êµ¬í•˜ì‹œì˜¤.
     PRODUCT_NAME        list_price                   avg_list_price  
 */
 
@@ -25,7 +25,7 @@ from products A
 order by a.product_name
 ;
 
--- ÀÎ¶óÀÎ ºä ¼­ºê Äõ¸®
+-- ì¸ë¼ì¸ ë·° ì„œë¸Œ ì¿¼ë¦¬
 
 SELECT ORDER_ID , sum(QUANTITY * UNIT_PRICE) AS ORDER_VALUE
 FROM ORDER_ITEMS oi

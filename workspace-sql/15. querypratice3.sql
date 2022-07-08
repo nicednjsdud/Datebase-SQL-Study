@@ -1,13 +1,13 @@
--- ÁýÇÕ¿¡ ÀÏºÎºÐ¸¸ Ãâ·Â
--- PAY_DE(Áö±ÞÀÏÀÚ) Á¶°ÇÀ» ¸¸Á·ÇÏ´Â ÁýÇÕ¿¡¼­ 10°Ç¸¸ ¸ÕÀú Ãâ·Â,
--- ±× 10°ÇÀÇ Ãâ·Â °á°ú¸¦ PAY-AMT·Î ³»¸²Â÷¼ø Á¤·ÄÇÔ.
+-- ì§‘í•©ì— ì¼ë¶€ë¶„ë§Œ ì¶œë ¥
+-- PAY_DE(ì§€ê¸‰ì¼ìž) ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ì§‘í•©ì—ì„œ 10ê±´ë§Œ ë¨¼ì € ì¶œë ¥,
+-- ê·¸ 10ê±´ì˜ ì¶œë ¥ ê²°ê³¼ë¥¼ PAY-AMTë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬í•¨.
 
 SELECT A.SAL_HIS_NO , A.PAY_DE , A.PAY_AMT , A.EMP_NO 
 FROM EZEN.TB_SAL_HIS A
 WHERE A.PAY_DE >= '20200501' AND A.PAY_DE <= '20200531' 
-ORDER BY A.PAY_AMT DESC ;		-- ¼­ºêÄõ¸®
+ORDER BY A.PAY_AMT DESC ;		-- ì„œë¸Œì¿¼ë¦¬
 
--- PAY_DE Á¶°ÇÀ» ¸¸Á·ÇÏ´Â ÁýÇÕ¿¡¼­ PAY_AMT ±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·ÄÇÑ ÁýÇÕ Áß »óÀ§ 10°Ç¸¸ Ãâ·Â
+-- PAY_DE ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ì§‘í•©ì—ì„œ PAY_AMT ê¸°ì¤€ìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬í•œ ì§‘í•© ì¤‘ ìƒìœ„ 10ê±´ë§Œ ì¶œë ¥
 SELECT A.SAL_HIS_NO , A.PAY_DE , A.PAY_AMT , A.EMP_NO 
 FROM (
 		SELECT A.SAL_HIS_NO , A.PAY_DE , A.PAY_AMT , A.EMP_NO 
@@ -17,42 +17,42 @@ FROM (
 	 ) A
 WHERE ROWNUM <=10;
 
--- ´ÜÀÏÇà ¹®ÀÚÇü ÇÔ¼ö
+-- ë‹¨ì¼í–‰ ë¬¸ìží˜• í•¨ìˆ˜
 
-SELECT LOWER('Oracle Server, SQL Develper') AS "LOWER('¼Ò¹®ÀÚ·Î º¯È¯')",
-	   UPPER('Oracle Server, SQL Develper') AS "UPPER('´ë¹®ÀÚ·Î º¯È¯')",
-	   ASCII('A') AS "ASCII('¾Æ½ºÅ°ÄÚµå°ª Ãâ·Â')",
-	   CONCAT('SQL','Develper') AS "CONCAT('¹®ÀÚ¿­ °áÇÕ')",
-	   SUBSTR('SQL Develper',1,3) AS "SUBSTR('¹®ÀÚ¿­ Àß¶ó³»±â')" ,
-	   LENGTH('SQL') AS "LENGTH('¹®ÀÚ¿­ÀÇ ±æÀÌ Ãâ·Â')",
-	   LTRIM(' SQL') AS "LTRIM('¿ÞÂÊ °ø¹éÀ» Á¦°Å')",
-	   RTRIM('SQL ') AS "RTRIM('¿À¸¥ÂÊ °ø¹éÀ» Á¦°Å')"
+SELECT LOWER('Oracle Server, SQL Develper') AS "LOWER('ì†Œë¬¸ìžë¡œ ë³€í™˜')",
+	   UPPER('Oracle Server, SQL Develper') AS "UPPER('ëŒ€ë¬¸ìžë¡œ ë³€í™˜')",
+	   ASCII('A') AS "ASCII('ì•„ìŠ¤í‚¤ì½”ë“œê°’ ì¶œë ¥')",
+	   CONCAT('SQL','Develper') AS "CONCAT('ë¬¸ìžì—´ ê²°í•©')",
+	   SUBSTR('SQL Develper',1,3) AS "SUBSTR('ë¬¸ìžì—´ ìž˜ë¼ë‚´ê¸°')" ,
+	   LENGTH('SQL') AS "LENGTH('ë¬¸ìžì—´ì˜ ê¸¸ì´ ì¶œë ¥')",
+	   LTRIM(' SQL') AS "LTRIM('ì™¼ìª½ ê³µë°±ì„ ì œê±°')",
+	   RTRIM('SQL ') AS "RTRIM('ì˜¤ë¥¸ìª½ ê³µë°±ì„ ì œê±°')"
 FROM DUAL;
 
--- ´ÜÀÏÇà ¼ýÀÚÇü ÇÔ¼ö
+-- ë‹¨ì¼í–‰ ìˆ«ìží˜• í•¨ìˆ˜
 
-SELECT ABS(-15) AS "ABS('Àý´ë°ªÀ» ¹ÝÈ¯')",
-	   SIGN(10) AS "SIGN('¾ç¼öÀÏ °æ¿ì 1 À½¼öÀÏ °æ¿ì -1, 0ÀÏ °æ¿ì 0 ¹ÝÈ¯')",
-	   MOD(8,3) AS "MOD('³ª¸ÓÁö ¹ÝÈ¯')",
-	   CEIL(38.678) AS "CEIL('¹«Á¶°Ç ¿Ã¸²')",
-	   FLOOR(38.678) AS "FLOOR('¹«Á¶°Ç ¹ö¸²')",
-	   ROUND(38.678,2) AS "ROUND('¼Ò¼öÁ¡ 2¹øÂ° ÀÚ¸®±îÁö ¹Ý¿Ã¸²')",
-	   TRUNC(38.678) AS "TRUNC('0ÀÇ ÀÚ¸®¿¡¼­ ¹«Á¶°Ç ÀÚ¸§')",
-	   TRUNC(38.678,1) AS "TRUNC('1ÀÇ ÀÚ¸®¿¡¼­ ¹«Á¶°Ç ÀÚ¸§')"
+SELECT ABS(-15) AS "ABS('ì ˆëŒ€ê°’ì„ ë°˜í™˜')",
+	   SIGN(10) AS "SIGN('ì–‘ìˆ˜ì¼ ê²½ìš° 1 ìŒìˆ˜ì¼ ê²½ìš° -1, 0ì¼ ê²½ìš° 0 ë°˜í™˜')",
+	   MOD(8,3) AS "MOD('ë‚˜ë¨¸ì§€ ë°˜í™˜')",
+	   CEIL(38.678) AS "CEIL('ë¬´ì¡°ê±´ ì˜¬ë¦¼')",
+	   FLOOR(38.678) AS "FLOOR('ë¬´ì¡°ê±´ ë²„ë¦¼')",
+	   ROUND(38.678,2) AS "ROUND('ì†Œìˆ˜ì  2ë²ˆì§¸ ìžë¦¬ê¹Œì§€ ë°˜ì˜¬ë¦¼')",
+	   TRUNC(38.678) AS "TRUNC('0ì˜ ìžë¦¬ì—ì„œ ë¬´ì¡°ê±´ ìžë¦„')",
+	   TRUNC(38.678,1) AS "TRUNC('1ì˜ ìžë¦¬ì—ì„œ ë¬´ì¡°ê±´ ìžë¦„')"
 FROM DUAL;
 
--- ³¯Â¥Çü µ¥ÀÌÅÍ º¯È¯ÇÔ¼ö
+-- ë‚ ì§œí˜• ë°ì´í„° ë³€í™˜í•¨ìˆ˜
 
-SELECT SYSDATE AS "SYSDATE",	-- ÇöÀç ³â¿ùÀÏ½ÃºÐÃÊ Ãâ·Â
-	   EXTRACT(YEAR FROM SYSDATE) AS "EXTRACT(YEAR FROM SYSDATE)", --³âÃâ·Â
-	   EXTRACT(MONTH FROM SYSDATE) AS "EXTRACT(MONTH FROM SYSDATE)", -- ´ÞÃâ·Â
-	   EXTRACT(DAY FROM SYSDATE) AS "EXTRACT(DAY FROM SYSDATE)",	-- ÀÏ Ãâ·Â	   
-	   TO_CHAR(SYSDATE, 'YYYY') AS "TO_CHAR(SYSDATE, 'YYYY')",		-- ³âÃâ·Â (¹®ÀÚ¿­)
-	   TO_CHAR(SYSDATE, 'MM') AS "TO_CHAR(SYSDATE, 'MM')",			-- ¿ù Ãâ·Â(¹®ÀÚ¿­)
-	   TO_CHAR(SYSDATE, 'DD') AS "TO_CHAR(SYSDATE, 'DD)",			-- ÀÏ Ãâ·Â(¹®ÀÚ¿­)
-	   TO_CHAR(SYSDATE, 'HH24') AS "TO_CHAR(SYSDATE, 'HH24')",		-- ½Ã Ãâ·Â(¹®ÀÚ¿­)	  
-	   TO_CHAR(SYSDATE, 'MI') AS "TO_CHAR(SYSDATE, 'MI')",			-- ºÐ Ãâ·Â(¹®ÀÚ¿­)
-	   TO_CHAR(SYSDATE, 'SS') AS "TO_CHAR(SYSDATE, 'S')",			-- ÃÊ Ãâ·Â(¹®ÀÚ¿­)
+SELECT SYSDATE AS "SYSDATE",	-- í˜„ìž¬ ë…„ì›”ì¼ì‹œë¶„ì´ˆ ì¶œë ¥
+	   EXTRACT(YEAR FROM SYSDATE) AS "EXTRACT(YEAR FROM SYSDATE)", --ë…„ì¶œë ¥
+	   EXTRACT(MONTH FROM SYSDATE) AS "EXTRACT(MONTH FROM SYSDATE)", -- ë‹¬ì¶œë ¥
+	   EXTRACT(DAY FROM SYSDATE) AS "EXTRACT(DAY FROM SYSDATE)",	-- ì¼ ì¶œë ¥	   
+	   TO_CHAR(SYSDATE, 'YYYY') AS "TO_CHAR(SYSDATE, 'YYYY')",		-- ë…„ì¶œë ¥ (ë¬¸ìžì—´)
+	   TO_CHAR(SYSDATE, 'MM') AS "TO_CHAR(SYSDATE, 'MM')",			-- ì›” ì¶œë ¥(ë¬¸ìžì—´)
+	   TO_CHAR(SYSDATE, 'DD') AS "TO_CHAR(SYSDATE, 'DD)",			-- ì¼ ì¶œë ¥(ë¬¸ìžì—´)
+	   TO_CHAR(SYSDATE, 'HH24') AS "TO_CHAR(SYSDATE, 'HH24')",		-- ì‹œ ì¶œë ¥(ë¬¸ìžì—´)	  
+	   TO_CHAR(SYSDATE, 'MI') AS "TO_CHAR(SYSDATE, 'MI')",			-- ë¶„ ì¶œë ¥(ë¬¸ìžì—´)
+	   TO_CHAR(SYSDATE, 'SS') AS "TO_CHAR(SYSDATE, 'S')",			-- ì´ˆ ì¶œë ¥(ë¬¸ìžì—´)
 	   TO_NUMBER(TO_CHAR(SYSDATE,'YYYY')) AS "TO_NUMBER(TO_CHAR(SYSDATE,'YYYY'))",
 	   TO_NUMBER(TO_CHAR(SYSDATE,'MM')) AS "TO_NUMBER(TO_CHAR(SYSDATE,'MM'))",
 	   TO_NUMBER(TO_CHAR(SYSDATE,'DD')) AS "TO_NUMBER(TO_CHAR(SYSDATE,'DD'))",
@@ -61,21 +61,21 @@ SELECT SYSDATE AS "SYSDATE",	-- ÇöÀç ³â¿ùÀÏ½ÃºÐÃÊ Ãâ·Â
 	   TO_NUMBER(TO_CHAR(SYSDATE, 'SS')) AS "TO_NUMBER(TO_CHAR(SYSDATE, 'SS'))"
 FROM DUAL;
 
--- ³¯Â¥Çü µ¥ÀÌÅÍ ¿¬»ê
+-- ë‚ ì§œí˜• ë°ì´í„° ì—°ì‚°
 
-SELECT SYSDATE AS "SYSDATE",			-- ÇöÀç½Ã°£
-	   SYSDATE -1 AS "SYSDATE-1",		-- 1ÀÏÀ» »« ½Ã°£
-	   SYSDATE -7 AS "SYSDATE-7",		-- 7ÀÏÀ» »« ½Ã°£
-	   SYSDATE - (1/24) "SYSDATE - (1/24)",--1½Ã°£ Àü
-	   SYSDATE - (1/24/60) "SYSDATE - (1/24/60)",	--1ºÐÀü
-	   SYSDATE - (1/24/60/60) "SYSDATE -(1/24/60/60)", --1ÃÊÀü
-	   SYSDATE - (1/24/60/60)*10 "SYSDATE -(1/24/60/60)*10" --10ÃÊÀü
+SELECT SYSDATE AS "SYSDATE",			-- í˜„ìž¬ì‹œê°„
+	   SYSDATE -1 AS "SYSDATE-1",		-- 1ì¼ì„ ëº€ ì‹œê°„
+	   SYSDATE -7 AS "SYSDATE-7",		-- 7ì¼ì„ ëº€ ì‹œê°„
+	   SYSDATE - (1/24) "SYSDATE - (1/24)",--1ì‹œê°„ ì „
+	   SYSDATE - (1/24/60) "SYSDATE - (1/24/60)",	--1ë¶„ì „
+	   SYSDATE - (1/24/60/60) "SYSDATE -(1/24/60/60)", --1ì´ˆì „
+	   SYSDATE - (1/24/60/60)*10 "SYSDATE -(1/24/60/60)*10" --10ì´ˆì „
 FROM DUAL;
 
--- µ¥ÀÌÅÍ º¯È¯ÀÇ Á¾·ù
+-- ë°ì´í„° ë³€í™˜ì˜ ì¢…ë¥˜
 /*
- *  1) ¾Ï½ÃÀû Çü º¯È¯ : DBMS°¡ ÀÚµ¿À¸·Î µ¥ÀÌÅÍ À¯ÇüÀ» º¯È¯ÇÏ´Â °æ¿ì
- *  2) ¸í½ÃÀû Çü º¯È¯ : µ¥ÀÌÅÍ º¯È¯ Çü ÇÔ¼ö·Î µ¥ÀÌÅÍ À¯ÇüÀ» º¯È¯ÇÏµµ·Ï ¸í½ÃÇØÁÖ´Â °æ¿ì
+ *  1) ì•”ì‹œì  í˜• ë³€í™˜ : DBMSê°€ ìžë™ìœ¼ë¡œ ë°ì´í„° ìœ í˜•ì„ ë³€í™˜í•˜ëŠ” ê²½ìš°
+ *  2) ëª…ì‹œì  í˜• ë³€í™˜ : ë°ì´í„° ë³€í™˜ í˜• í•¨ìˆ˜ë¡œ ë°ì´í„° ìœ í˜•ì„ ë³€í™˜í•˜ë„ë¡ ëª…ì‹œí•´ì£¼ëŠ” ê²½ìš°
  */
 
 SELECT TO_CHAR(SYSDATE, 'YYYY/MM/DD') AS "TO_CHAR(SYSDATE, 'YYYY/MM/DD')",
@@ -86,59 +86,59 @@ SELECT TO_CHAR(SYSDATE, 'YYYY/MM/DD') AS "TO_CHAR(SYSDATE, 'YYYY/MM/DD')",
 FROM DUAL ;
 
 /*
- *  CASE WHEN Á¶°Ç
- * 		THEN °ª È¤Àº SQL¹®
- * 		ELSE °ª È¤Àº SQL¹®
+ *  CASE WHEN ì¡°ê±´
+ * 		THEN ê°’ í˜¹ì€ SQLë¬¸
+ * 		ELSE ê°’ í˜¹ì€ SQLë¬¸
  * 	END
  * 
- *  : Á¶°ÇÀÌ ¸ÂÀ¸¸é THENÀý ¼öÇàÇÏ°í ±×·¸Áö ¾ÊÀ¸¸é ELSEÀýÀ» ¼öÇàÇÑ´Ù.
+ *  : ì¡°ê±´ì´ ë§žìœ¼ë©´ THENì ˆ ìˆ˜í–‰í•˜ê³  ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ ELSEì ˆì„ ìˆ˜í–‰í•œë‹¤.
  */
 
 
-SELECT CASE WHEN SAL_CD = '100001' THEN '±âº»±Þ'
-			WHEN SAL_CD = '100002' THEN '»ó¿©±Þ'
-			WHEN SAL_CD = '100003' THEN 'Æ¯º°»ó¿©±Þ'
-			WHEN SAL_CD = '100004' THEN '¾ß±Ù¼ö´ç'
-			WHEN SAL_CD = '100005' THEN 'ÁÖ¸»¼ö´ç'
-			WHEN SAL_CD = '100006' THEN 'Á¡½Ä½Ä´ë'
-			WHEN SAL_CD = '100007' THEN 'º¹ÁöÆ÷ÀÎÆ®'
-			ELSE 'À¯È¿ÇÏÁö ¾ÊÀ½'
+SELECT CASE WHEN SAL_CD = '100001' THEN 'ê¸°ë³¸ê¸‰'
+			WHEN SAL_CD = '100002' THEN 'ìƒì—¬ê¸‰'
+			WHEN SAL_CD = '100003' THEN 'íŠ¹ë³„ìƒì—¬ê¸‰'
+			WHEN SAL_CD = '100004' THEN 'ì•¼ê·¼ìˆ˜ë‹¹'
+			WHEN SAL_CD = '100005' THEN 'ì£¼ë§ìˆ˜ë‹¹'
+			WHEN SAL_CD = '100006' THEN 'ì ì‹ì‹ëŒ€'
+			WHEN SAL_CD = '100007' THEN 'ë³µì§€í¬ì¸íŠ¸'
+			ELSE 'ìœ íš¨í•˜ì§€ ì•ŠìŒ'
 END SAL_NM 
 FROM EZEN.TB_SAL;
 
 /*
- *	DECODE(Ç¥Çö½Ä È¤Àº ±âÁØÄÃ·³, ºñ±³°ª1, °á°ú°ª1, ºñ±³°ª2, °á°ú°ª2, µðÆúÆ® °ª )
+ *	DECODE(í‘œí˜„ì‹ í˜¹ì€ ê¸°ì¤€ì»¬ëŸ¼, ë¹„êµê°’1, ê²°ê³¼ê°’1, ë¹„êµê°’2, ê²°ê³¼ê°’2, ë””í´íŠ¸ ê°’ )
  *	
- *  : Ç¥Çö½Ä È¤Àº ±âÁØÄÃ·³°ú ºñ±³ÇÏ¿© ºñ±³°ª1°ú °°À¸¸é °á°ú°ª1 Ãâ·ÂÇÏ°í,
- *    Ç¥Çö½Ä È¤Àº ±âÁØÄÃ·³°ú ºñ±³ÇÏ¿© ºñ±³°ª2¿Í °°À¸¸é °á°ú°ª2 Ãâ·ÂÇÏ°í, ±×·¸Áö¾ÊÀ¸¸é
- *    µðÆúÆ® °ªÀ» °á°ú·Î Ãâ·ÂÇÑ´Ù.
+ *  : í‘œí˜„ì‹ í˜¹ì€ ê¸°ì¤€ì»¬ëŸ¼ê³¼ ë¹„êµí•˜ì—¬ ë¹„êµê°’1ê³¼ ê°™ìœ¼ë©´ ê²°ê³¼ê°’1 ì¶œë ¥í•˜ê³ ,
+ *    í‘œí˜„ì‹ í˜¹ì€ ê¸°ì¤€ì»¬ëŸ¼ê³¼ ë¹„êµí•˜ì—¬ ë¹„êµê°’2ì™€ ê°™ìœ¼ë©´ ê²°ê³¼ê°’2 ì¶œë ¥í•˜ê³ , ê·¸ë ‡ì§€ì•Šìœ¼ë©´
+ *    ë””í´íŠ¸ ê°’ì„ ê²°ê³¼ë¡œ ì¶œë ¥í•œë‹¤.
  */
-SELECT DECODE(EZEN.TB_SAL.SAL_CD, '100001', '±âº»±Þ2','100002','»ó¿©±Þ', '±âÅ¸')
+SELECT DECODE(EZEN.TB_SAL.SAL_CD, '100001', 'ê¸°ë³¸ê¸‰2','100002','ìƒì—¬ê¸‰', 'ê¸°íƒ€')
 FROM EZEN.TB_SAL;
 
--- ³Î°ü·Ã ÇÔ¼ö »ç¿ë
-SELECT NVL(DIRECT_MANAGER_EMP_NO, 'ÃÖ»óÀ§ÀÚ')	-- Á÷¼Ó»ó°ü»ç¿ø¹øÈ£°¡ NULLÀÌ¸é "ÃÖ»óÀ§ÀÚ"·Î Ãâ·Â
+-- ë„ê´€ë ¨ í•¨ìˆ˜ ì‚¬ìš©
+SELECT NVL(DIRECT_MANAGER_EMP_NO, 'ìµœìƒìœ„ìž')	-- ì§ì†ìƒê´€ì‚¬ì›ë²ˆí˜¸ê°€ NULLì´ë©´ "ìµœìƒìœ„ìž"ë¡œ ì¶œë ¥
 FROM EZEN.TB_EMP
 WHERE DIRECT_MANAGER_EMP_NO IS NULL;
 
 
--- ÃÖ»óÀ§ºÎ¼­
-SELECT NVL(A.UPPER_DEPT_CD, 'ÃÖ»óÀ§ºÎ¼­') AS »óÀ§ºÎ¼­
+-- ìµœìƒìœ„ë¶€ì„œ
+SELECT NVL(A.UPPER_DEPT_CD, 'ìµœìƒìœ„ë¶€ì„œ') AS ìƒìœ„ë¶€ì„œ
 FROM EZEN.TB_DEPT A
 WHERE A.UPPER_DEPT_CD IS NULL;
 
--- MAXÇÔ¼ö¸¦ ¾²¸é °øÁýÇÕÀÎ °æ¿ì¿¡µµ ÇÑ°³ÀÇ ROW°¡ ³ª¿È.
-SELECT NVL(MAX(EMP_NM),'Á¸Àç¾ÈÇÔ') AS EMP_NM
+-- MAXí•¨ìˆ˜ë¥¼ ì“°ë©´ ê³µì§‘í•©ì¸ ê²½ìš°ì—ë„ í•œê°œì˜ ROWê°€ ë‚˜ì˜´.
+SELECT NVL(MAX(EMP_NM),'ì¡´ìž¬ì•ˆí•¨') AS EMP_NM
 FROM EZEN.TB_EMP A
-WHERE A.EMP_NM = '·ùÇöÁø';
+WHERE A.EMP_NM = 'ë¥˜í˜„ì§„';
 
--- °°Áö¾ÊÀ¸¸é '¹ÚÂùÈ£'¸®ÅÏ
-SELECT NULLIF('¹ÚÂùÈ£','¹ÚÁö¼º') FROM dual;
+-- ê°™ì§€ì•Šìœ¼ë©´ 'ë°•ì°¬í˜¸'ë¦¬í„´
+SELECT NULLIF('ë°•ì°¬í˜¸','ë°•ì§€ì„±') FROM dual;
 
--- °°À¸¸é NULL Ãâ·Â
-SELECT NVL(NULLIF('½Å»çÀÓ´ç','½Å»çÀÓ´ç'),'°°À¸¸é ³Î') FROM DUAL;
+-- ê°™ìœ¼ë©´ NULL ì¶œë ¥
+SELECT NVL(NULLIF('ì‹ ì‚¬ìž„ë‹¹','ì‹ ì‚¬ìž„ë‹¹'),'ê°™ìœ¼ë©´ ë„') FROM DUAL;
 
--- COALSCE : ³ÎÀÌ ¾Æ´Ñ Ã¹¹øÂ° ¼ö½Ä/°ªÀ» ¸®ÅÏ
+-- COALSCE : ë„ì´ ì•„ë‹Œ ì²«ë²ˆì§¸ ìˆ˜ì‹/ê°’ì„ ë¦¬í„´
 SELECT COALESCE(NULL, NULL, 0) AS COALESCE_ FROM DUAL; 
 
 SELECT COALESCE(5000, NULL,0) AS COALESCE_ FROM DUAL;

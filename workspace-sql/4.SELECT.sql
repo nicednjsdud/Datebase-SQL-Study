@@ -1,110 +1,110 @@
 /*
-    °í°´ Å×ÀÌºí¿¡¼­ °í°´¾ÆÀÌµð, °í°´ÀÌ¸§, µî±Þ ¼Ó¼ºÀ» °Ë»öÇÏ½Ã¿À.
+    ê³ ê° í…Œì´ë¸”ì—ì„œ ê³ ê°ì•„ì´ë””, ê³ ê°ì´ë¦„, ë“±ê¸‰ ì†ì„±ì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
 */
-SELECT °í°´¾ÆÀÌµð, °í°´ÀÌ¸§, µî±Þ
-FROM °í°´;
+SELECT ê³ ê°ì•„ì´ë””, ê³ ê°ì´ë¦„, ë“±ê¸‰
+FROM ê³ ê°;
 
--- °í°´ Å×ÀÌºí¿¡ Á¸ÀçÇÏ´Â ¸ðµç ¼Ó¼ºÀ» °Ë»öÇÏ½Ã¿À.
-SELECT °í°´¾ÆÀÌµð, °í°´ÀÌ¸§, ³ªÀÌ, µî±Þ, Á÷¾÷, Àû¸³±Ý
-FROM °í°´;
+-- ê³ ê° í…Œì´ë¸”ì— ì¡´ìž¬í•˜ëŠ” ëª¨ë“  ì†ì„±ì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
+SELECT ê³ ê°ì•„ì´ë””, ê³ ê°ì´ë¦„, ë‚˜ì´, ë“±ê¸‰, ì§ì—…, ì ë¦½ê¸ˆ
+FROM ê³ ê°;
 
 SELECT *
-FROM °í°´;
+FROM ê³ ê°;
 
--- Á¦Ç° Å×ÀÌºí¿¡¼­ Á¦Á¶¾÷Ã¼¸¦ °Ë»öÇØ º¸½Ã¿À.
-SELECT Á¦Á¶¾÷Ã¼
-FROM Á¦Ç°;
+-- ì œí’ˆ í…Œì´ë¸”ì—ì„œ ì œì¡°ì—…ì²´ë¥¼ ê²€ìƒ‰í•´ ë³´ì‹œì˜¤.
+SELECT ì œì¡°ì—…ì²´
+FROM ì œí’ˆ;
 
-SELECT ALL Á¦Á¶¾÷Ã¼
-FROM Á¦Ç°;
+SELECT ALL ì œì¡°ì—…ì²´
+FROM ì œí’ˆ;
 
-SELECT DISTINCT Á¦Á¶¾÷Ã¼
-FROM Á¦Ç°;
+SELECT DISTINCT ì œì¡°ì—…ì²´
+FROM ì œí’ˆ;
 
--- Á¦Ç° Å×ÀÌºí¿¡¼­ Á¦Ç°¸í°ú ´Ü°¡¸¦ °Ë»öÇÏµÇ, ´Ü°¡¸¦ °¡°ÝÀÌ¶ó´Â »õ ÀÌ¸§À¸·Î Ãâ·ÂÇÏ½Ã¿À.
-SELECT Á¦Ç°¸í, ´Ü°¡ AS °¡°Ý
-FROM Á¦Ç°;
+-- ì œí’ˆ í…Œì´ë¸”ì—ì„œ ì œí’ˆëª…ê³¼ ë‹¨ê°€ë¥¼ ê²€ìƒ‰í•˜ë˜, ë‹¨ê°€ë¥¼ ê°€ê²©ì´ë¼ëŠ” ìƒˆ ì´ë¦„ìœ¼ë¡œ ì¶œë ¥í•˜ì‹œì˜¤.
+SELECT ì œí’ˆëª…, ë‹¨ê°€ AS ê°€ê²©
+FROM ì œí’ˆ;
 
-SELECT Á¦Ç°¸í, ´Ü°¡ °¡°Ý
-FROM Á¦Ç°;
+SELECT ì œí’ˆëª…, ë‹¨ê°€ ê°€ê²©
+FROM ì œí’ˆ;
 
-SELECT Á¦Ç°¸í, ´Ü°¡ + 500 AS "Á¶Á¤ ´Ü°¡"
-FROM Á¦Ç°;
+SELECT ì œí’ˆëª…, ë‹¨ê°€ + 500 AS "ì¡°ì • ë‹¨ê°€"
+FROM ì œí’ˆ;
 
 
 SELECT *
-FROM Á¦Ç°;
--- Á¦Ç° Å×ÀÌºí¿¡¼­ ÇÑºûÁ¦°ú°¡ Á¦Á¶ÇÑ Á¦Ç°ÀÇ Á¦Ç°¸í, Àç°í·®, ´Ü°¡¸¦ °Ë»öÇÏ½Ã¿À.
-SELECT Á¦Ç°¸í, Àç°í·®, ´Ü°¡
-FROM Á¦Ç°
-WHERE Á¦Á¶¾÷Ã¼ = 'ÇÑºûÁ¦°ú';
+FROM ì œí’ˆ;
+-- ì œí’ˆ í…Œì´ë¸”ì—ì„œ í•œë¹›ì œê³¼ê°€ ì œì¡°í•œ ì œí’ˆì˜ ì œí’ˆëª…, ìž¬ê³ ëŸ‰, ë‹¨ê°€ë¥¼ ê²€ìƒ‰í•˜ì‹œì˜¤.
+SELECT ì œí’ˆëª…, ìž¬ê³ ëŸ‰, ë‹¨ê°€
+FROM ì œí’ˆ
+WHERE ì œì¡°ì—…ì²´ = 'í•œë¹›ì œê³¼';
 
--- ÁÖ¹® Å×ÀÌºí¿¡¼­ apple °í°´ÀÌ 15°³ ÀÌ»ó ÁÖ¹®ÇÑ ÁÖ¹®Á¦Ç°, ¼ö·®, ÁÖ¹®ÀÏÀÚ¸¦ °Ë»öÇÏ½Ã¿À.
-select ÁÖ¹®Á¦Ç°, ¼ö·®, ÁÖ¹®ÀÏÀÚ
-from ÁÖ¹®
-where ÁÖ¹®°í°´ = 'apple' and ¼ö·® >= 15;
+-- ì£¼ë¬¸ í…Œì´ë¸”ì—ì„œ apple ê³ ê°ì´ 15ê°œ ì´ìƒ ì£¼ë¬¸í•œ ì£¼ë¬¸ì œí’ˆ, ìˆ˜ëŸ‰, ì£¼ë¬¸ì¼ìžë¥¼ ê²€ìƒ‰í•˜ì‹œì˜¤.
+select ì£¼ë¬¸ì œí’ˆ, ìˆ˜ëŸ‰, ì£¼ë¬¸ì¼ìž
+from ì£¼ë¬¸
+where ì£¼ë¬¸ê³ ê° = 'apple' and ìˆ˜ëŸ‰ >= 15;
 
--- ÁÖ¹® Å×ÀÌºí¿¡¼­  apple °í°´ÀÌ ÁÖ¹®Çß°Å³ª 15°³ ÀÌ»ó ÁÖ¹®µÈ Á¦Ç°ÀÇ ÁÖ¹®Á¦Ç°, ¼ö·®, ÁÖ¹®ÀÏÀÚ, ÁÖ¹®°í°´À» °Ë»öÇÏ½Ã¿À.
-select ÁÖ¹®Á¦Ç°, ¼ö·®, ÁÖ¹®ÀÏÀÚ, ÁÖ¹®°í°´
-from ÁÖ¹®
-where ÁÖ¹®°í°´ = 'apple' or ¼ö·® >= 15;
+-- ì£¼ë¬¸ í…Œì´ë¸”ì—ì„œ  apple ê³ ê°ì´ ì£¼ë¬¸í–ˆê±°ë‚˜ 15ê°œ ì´ìƒ ì£¼ë¬¸ëœ ì œí’ˆì˜ ì£¼ë¬¸ì œí’ˆ, ìˆ˜ëŸ‰, ì£¼ë¬¸ì¼ìž, ì£¼ë¬¸ê³ ê°ì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
+select ì£¼ë¬¸ì œí’ˆ, ìˆ˜ëŸ‰, ì£¼ë¬¸ì¼ìž, ì£¼ë¬¸ê³ ê°
+from ì£¼ë¬¸
+where ì£¼ë¬¸ê³ ê° = 'apple' or ìˆ˜ëŸ‰ >= 15;
 
 /*
-    Á¦Ç° Å×ÀÌºí¿¡¼­ ´Ü°¡°¡ 2,000¿ø ÀÌ»óÀÌ¸é¼­ 3,000¿ø ÀÌÇÏÀÎ Á¦Ç°ÀÇ 
-    Á¦Ç°¸í, ´Ü°¡, Á¦Á¶¾÷Ã¼¸¦ °Ë»öÇÏ½Ã¿À.
+    ì œí’ˆ í…Œì´ë¸”ì—ì„œ ë‹¨ê°€ê°€ 2,000ì› ì´ìƒì´ë©´ì„œ 3,000ì› ì´í•˜ì¸ ì œí’ˆì˜ 
+    ì œí’ˆëª…, ë‹¨ê°€, ì œì¡°ì—…ì²´ë¥¼ ê²€ìƒ‰í•˜ì‹œì˜¤.
 */
-select Á¦Ç°¸í, ´Ü°¡, Á¦Á¶¾÷Ã¼
-from Á¦Ç°
-where ´Ü°¡ >= 2000 and ´Ü°¡ <=3000;
+select ì œí’ˆëª…, ë‹¨ê°€, ì œì¡°ì—…ì²´
+from ì œí’ˆ
+where ë‹¨ê°€ >= 2000 and ë‹¨ê°€ <=3000;
 
 
--- °í°´ Å×ÀÌºí¿¡¼­ ¼ºÀÌ ±è ¾¾ÀÎ °í°´ÀÇ °í°´ÀÌ¸§, ³ªÀÌ, µî±Þ, Àû¸³±ÝÀ» °Ë»öÇÏ½Ã¿À.
-select °í°´ÀÌ¸§, ³ªÀÌ, µî±Þ, Àû¸³±Ý
-from °í°´
-where °í°´ÀÌ¸§ like '±è%';
+-- ê³ ê° í…Œì´ë¸”ì—ì„œ ì„±ì´ ê¹€ ì”¨ì¸ ê³ ê°ì˜ ê³ ê°ì´ë¦„, ë‚˜ì´, ë“±ê¸‰, ì ë¦½ê¸ˆì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
+select ê³ ê°ì´ë¦„, ë‚˜ì´, ë“±ê¸‰, ì ë¦½ê¸ˆ
+from ê³ ê°
+where ê³ ê°ì´ë¦„ like 'ê¹€%';
 
--- °í°´ Å×ÀÌºí¿¡¼­ °í°´¾ÆÀÌµð°¡ 5ÀÚÀÎ °í°´ÀÇ °í°´¾ÆÀÌµð, °í°´ÀÌ¸§, µî±ÞÀ» °Ë»öÇÏ½Ã¿À.
-select °í°´¾ÆÀÌµð, °í°´ÀÌ¸§, µî±Þ
-from °í°´
-where °í°´¾ÆÀÌµð like '_____';
+-- ê³ ê° í…Œì´ë¸”ì—ì„œ ê³ ê°ì•„ì´ë””ê°€ 5ìžì¸ ê³ ê°ì˜ ê³ ê°ì•„ì´ë””, ê³ ê°ì´ë¦„, ë“±ê¸‰ì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
+select ê³ ê°ì•„ì´ë””, ê³ ê°ì´ë¦„, ë“±ê¸‰
+from ê³ ê°
+where ê³ ê°ì•„ì´ë”” like '_____';
 
--- °í°´ Å×ÀÌºí¿¡¼­ ³ªÀÌ°¡ ¾ÆÁ÷ ÀÔ·ÂµÇÁö ¾ÊÀº °í°´ÀÇ °í°´ÀÌ¸§À» °Ë»öÇÏ½Ã¿À.
-select °í°´ÀÌ¸§
-from °í°´
-where ³ªÀÌ is null;
+-- ê³ ê° í…Œì´ë¸”ì—ì„œ ë‚˜ì´ê°€ ì•„ì§ ìž…ë ¥ë˜ì§€ ì•Šì€ ê³ ê°ì˜ ê³ ê°ì´ë¦„ì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
+select ê³ ê°ì´ë¦„
+from ê³ ê°
+where ë‚˜ì´ is null;
 
--- °í°´ Å×ÀÌºí¿¡¼­ ³ªÀÌ°¡ ÀÌ¹Ì ÀÔ·ÂµÈ °í°´ÀÇ °í°´ÀÌ¸§À» °Ë»öÇÏ½Ã¿À.
-select °í°´ÀÌ¸§
-from °í°´
-where ³ªÀÌ is not null;
+-- ê³ ê° í…Œì´ë¸”ì—ì„œ ë‚˜ì´ê°€ ì´ë¯¸ ìž…ë ¥ëœ ê³ ê°ì˜ ê³ ê°ì´ë¦„ì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
+select ê³ ê°ì´ë¦„
+from ê³ ê°
+where ë‚˜ì´ is not null;
 
 
--- °í°´ Å×ÀÌºí¿¡¼­ °í°´ÀÌ¸§, µî±Þ, ³ªÀÌ¸¦ °Ë»öÇÏµÇ, ³ªÀÌ¸¦ ±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·ÄÇØº¸½Ã¿À.
-SELECT °í°´ÀÌ¸§, µî±Þ, ³ªÀÌ
-FROM °í°´
-ORDER BY ³ªÀÌ DESC;
+-- ê³ ê° í…Œì´ë¸”ì—ì„œ ê³ ê°ì´ë¦„, ë“±ê¸‰, ë‚˜ì´ë¥¼ ê²€ìƒ‰í•˜ë˜, ë‚˜ì´ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬í•´ë³´ì‹œì˜¤.
+SELECT ê³ ê°ì´ë¦„, ë“±ê¸‰, ë‚˜ì´
+FROM ê³ ê°
+ORDER BY ë‚˜ì´ DESC;
 
 
 /*
- * ÁÖ¹® Å×ÀÌºí¿¡¼­ ¼ö·®ÀÌ 10°³ ÀÌ»óÀÎ ÁÖ¹®ÀÇ 
- * ÁÖ¹®°í°´, ÁÖ¹®Á¦Ç°, ¼ö·®, ÁÖ¹®ÀÏÀÚ¸¦ °Ë»öÇÏ½Ã¿À.
- * ´Ü, ÁÖ¹®Á¦Ç°À» ±âÁØÀ¸·Î ¿À¸§Â÷¼ø Á¤·ÄÇÏ°í, 
- * µ¿ÀÏ Á¦Ç°Àº ¼ö·®À» ±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·ÄÇÏ½Ã¿À.
+ * ì£¼ë¬¸ í…Œì´ë¸”ì—ì„œ ìˆ˜ëŸ‰ì´ 10ê°œ ì´ìƒì¸ ì£¼ë¬¸ì˜ 
+ * ì£¼ë¬¸ê³ ê°, ì£¼ë¬¸ì œí’ˆ, ìˆ˜ëŸ‰, ì£¼ë¬¸ì¼ìžë¥¼ ê²€ìƒ‰í•˜ì‹œì˜¤.
+ * ë‹¨, ì£¼ë¬¸ì œí’ˆì„ ê¸°ì¤€ìœ¼ë¡œ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬í•˜ê³ , 
+ * ë™ì¼ ì œí’ˆì€ ìˆ˜ëŸ‰ì„ ê¸°ì¤€ìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬í•˜ì‹œì˜¤.
  */
-SELECT ÁÖ¹®°í°´, ÁÖ¹®Á¦Ç°, ¼ö·®, ÁÖ¹®ÀÏÀÚ
-FROM ÁÖ¹®
-WHERE ¼ö·® >= 10
-ORDER BY ÁÖ¹®Á¦Ç° ASC, ¼ö·® DESC ;
+SELECT ì£¼ë¬¸ê³ ê°, ì£¼ë¬¸ì œí’ˆ, ìˆ˜ëŸ‰, ì£¼ë¬¸ì¼ìž
+FROM ì£¼ë¬¸
+WHERE ìˆ˜ëŸ‰ >= 10
+ORDER BY ì£¼ë¬¸ì œí’ˆ ASC, ìˆ˜ëŸ‰ DESC ;
 
 
--- Á¦Ç° Å×ÀÌºí¿¡¼­ ¸ðµç Á¦Ç°ÀÇ ´Ü°¡ Æò±ÕÀ» °Ë»öÇÏ½Ã¿À.
-SELECT avg(´Ü°¡)
-FROM Á¦Ç°;
+-- ì œí’ˆ í…Œì´ë¸”ì—ì„œ ëª¨ë“  ì œí’ˆì˜ ë‹¨ê°€ í‰ê· ì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
+SELECT avg(ë‹¨ê°€)
+FROM ì œí’ˆ;
 
--- ÇÑºûÁ¦°ú¿¡¼­ Á¦Á¶ÇÑ Á¦Ç°ÀÇ Àç°í·® ÇÕ°è¸¦ Á¦Ç° Å×ÀÌºí¿¡¼­ °Ë»öÇÏ½Ã¿À.
-SELECT SUM(Àç°í·®) AS "Àç°í·® ÇÕ°è"
-FROM Á¦Ç°
-WHERE Á¦Á¶¾÷Ã¼ = 'ÇÑºûÁ¦°ú';
+-- í•œë¹›ì œê³¼ì—ì„œ ì œì¡°í•œ ì œí’ˆì˜ ìž¬ê³ ëŸ‰ í•©ê³„ë¥¼ ì œí’ˆ í…Œì´ë¸”ì—ì„œ ê²€ìƒ‰í•˜ì‹œì˜¤.
+SELECT SUM(ìž¬ê³ ëŸ‰) AS "ìž¬ê³ ëŸ‰ í•©ê³„"
+FROM ì œí’ˆ
+WHERE ì œì¡°ì—…ì²´ = 'í•œë¹›ì œê³¼';
 
 
 
