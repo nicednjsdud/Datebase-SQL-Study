@@ -29,4 +29,5 @@ INSERT INTO ADMIN.TB_SHOPPING_MEMBER
 VALUES('bob', '0824', '정원영', '101', '010', '3456', '7890', 'Y', 'bob', 'gmail.com,non', 'N', '2201718', '경기도 화성시 기산동', '서경초등학교','1층', '1997', '3', '27', '2','2022-07-18', 'N'
 );
 
-SELECT decode(count(*),1,'true',0,'false') FROM TB_SHOPPING_MEMBER tsm WHERE MEMBER_ID ='bob'
+SELECT decode(count(*),1,'true',0,'false')
+FROM TB_SHOPPING_MEMBER tsm WHERE MEMBER_ID ='bob'

@@ -17,7 +17,7 @@ SELECT * FROM t_member WHERE id = 'LEE' AND pwd = '0824';
 DROP TABLE t_board CASCADE CONSTRAINTS;
 CREATE TABLE t_board(
 	articleNO number(10) PRIMARY KEY,
-	parentNO number(10),
+	parentNO number(10) DEFAULT 0,
 	title varchar2(500) NOT NULL,
 	content varchar2(4000),
 	imageFileName varchar2(100),
@@ -81,9 +81,11 @@ CREATE TABLE T_ImageFile(
 	ON DELETE CASCADE
 );
 
+INSERT INTO ADMIN.T_IMAGEFILE
+(IMAGEFILENO, IMAGEFILENAME, REGDATE, ARTICLENO)
+VALUES(0, '', sysdate, 0);
 
-
-
+SELECT nvl(Max(imageFileNO),0) FROM t_imageFile;
 
 
 
