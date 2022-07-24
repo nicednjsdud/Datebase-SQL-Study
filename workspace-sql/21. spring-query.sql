@@ -8,6 +8,9 @@ CREATE TABLE tb_shopping_member (
 	hp1	varchar2(20),
 	hp2 varchar2(20),
 	hp3 varchar2(20),
+	home_hp1 varchar2(20),
+	home_hp2 varchar2(20),
+	home_hp3 varchar2(20),
 	smssts_yn	varchar2(20),
 	email1 varchar2(20),
 	email2 varchar2(20),
@@ -28,6 +31,13 @@ INSERT INTO ADMIN.TB_SHOPPING_MEMBER
 (MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_GENDER, HP1, HP2, HP3, SMSSTS_YN, EMAIL1, EMAIL2, EMAILSTS_YN, ZIPCODE, ROADADDRESS, JIBUNADDRESS, NAMUJIADDRESS, MEMBER_BIRTH_Y, MEMBER_BIRTH_M, MEMBER_BIRTH_D, MEMBER_BIRTH_GN, JOINDATE, DEL_YN)
 VALUES('bob', '0824', '정원영', '101', '010', '3456', '7890', 'Y', 'bob', 'gmail.com,non', 'N', '2201718', '경기도 화성시 기산동', '서경초등학교','1층', '1997', '3', '27', '2','2022-07-18', 'N'
 );
+INSERT INTO ADMIN.TB_SHOPPING_MEMBER
+(MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_GENDER, HP1, HP2, HP3, SMSSTS_YN, EMAIL1, EMAIL2, EMAILSTS_YN, ZIPCODE, ROADADDRESS, JIBUNADDRESS, NAMUJIADDRESS, MEMBER_BIRTH_Y, MEMBER_BIRTH_M, MEMBER_BIRTH_D, MEMBER_BIRTH_GN, JOINDATE, DEL_YN)
+VALUES('dnfl0724', 'ehdqkdtlsrl1', '서우', '102', '010', '5920', '2844', 'Y', 'dnfl0724', 'gmail.com,non', 'N', '2201722', '경기도 화성시 영천', '행복주택 ','218-1405', '1997', '7', '24', '2','2022-07-22', 'N'
+);
 
 SELECT decode(count(*),1,'true',0,'false')
-FROM TB_SHOPPING_MEMBER tsm WHERE MEMBER_ID ='bob'
+FROM TB_SHOPPING_MEMBER tsm WHERE MEMBER_ID ='bob';
+COMMIT;
+
+UPDATE TB_SHOPPING_MEMBER SET MEMBER_NAME ='서우리' WHERE MEMBER_ID  = 'dnfl0724';
