@@ -221,3 +221,29 @@ ALTER TABLE T_BOARD2 ALTER COLUMN viewcounts DEFAULT 0;
 
 -- 조회수 업데이트
 UPDATE T_BOARD2 SET viewcounts = viewcounts + 1 WHERE ARTICLENO = 2;
+
+DROP TABLE member_shop CASCADE CONSTRAINTS;
+CREATE TABLE member_shop (
+	userid NUMBER(10) PRIMARY KEY,
+	name varchar2(100) NOT NULL,
+	pass varchar2(100) NOT NULL,
+	birthday DATE NOT NULL,
+	gender char(10) NOT NULL,
+	phone varchar2(100) NOT NULL,
+	addr varchar2(1000),
+	is_out char(10) DEFAULT 'n'  NOT NULL,
+	reg_date timestamp DEFAULT systimestamp NOT NULL,
+	login_date timestamp DEFAULT systimestamp NOT null
+);
+
+
+SELECT nvl(Max(userid),0) +1 FROM member_shop ;
+
+
+INSERT INTO ADMIN.MEMBER_SHOP
+(USERID, NAME, PASS, BIRTHDAY, GENDER, PHONE, ADDR)
+VALUES(2, 'test', '1234', '2011.03.27', 'M', '01062429703', '경기도');
+
+
+
+
